@@ -111,7 +111,7 @@ function sanitizeMySQL($var)
 		
 			<li class="nav-content"><a href="#jrtj"><img src="images/icon_today.png" /><div>今日特价</div></a></li>
 		
-			<li class="nav-content"><a href="#"><img src="images/icon_rent.png" /><div>图书漂流</div></a></li>
+			<li class="nav-content"><a href="user.html"><img src="images/icon_user.png" /><div>个人中心</div></a></li>
 		</ul>
 			
 	</nav>

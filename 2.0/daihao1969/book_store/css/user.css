@@ -1,0 +1,84 @@
+html{
+	font-size: 36px;
+}
+body{font-size:62.5%;
+	font-family:"Microsoft YaHei",Arial;
+margin: 0;padding: 0; overflow-x:hidden; overflow-y:auto;color:#555;}   
+a{
+	text-decoration: none;
+}
+a:link{
+	color: #555;
+}
+a:visited{
+	color: #555;
+}
+a:hover{
+	color: #555;
+}
+a:active{
+	color: #555;
+}
+.viewport{ max-width:640px; min-width:300px; margin:0 auto;} 
+
+.header-wrap{
+	height: 1rem;
+	padding-top:0.14rem;
+	border-bottom: #DDD solid 0.04rem;
+	background-color: #DDD;
+}
+.header-wrap div{
+	display: inline-block;
+}
+.header-wrap img{
+	vertical-align: middle;
+}
+.home-content{
+	margin-right: 2.8rem;
+	margin-left: 0.12rem;
+	float: left;
+	font-size: 0.5rem;
+}
+.search-content{
+	float: right;
+}
+.shopcart-content{
+	margin-right: 0.2rem;
+	float: right;
+}
+.header-logo{
+	width: 1rem;
+	vertical-align: middle;
+}
+.navbar{
+	font-size: 0.46rem;
+	padding: 0.2rem 0.3rem;
+	border-bottom: 0.02rem solid #ccc;
+}
+.navbar img{
+	width: 0.7rem;
+	vertical-align: middle;
+}
+.left-icon{
+	margin-right: 0.2rem;
+}
+.right-icon{
+	float: right;
+}
+
+.sub-nav{
+	text-align: center;
+	padding: 0.1rem 0.2rem;
+	border-bottom: 0.02rem solid #ccc;
+}
+.sub-nav li{
+	display: inline-block;
+	font-size: 0.4rem;
+	text-align: center;
+	padding: 0 0.4rem;
+}
+.sub-nav img{
+	width: 0.8rem;
+	vertical-align: middle;
+	margin-bottom: 0.1rem;
+}

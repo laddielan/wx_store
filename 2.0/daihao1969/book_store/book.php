@@ -97,8 +97,7 @@ function sanitizeMySQL($var)
 
 <header class="header-wrap">
 	<div class="home-content"><a href="index.php"><img class="header-logo" src="images/logo.png"/>9号书店</a></div>
-	<div class="shopcart-content"><a href=""><img class="header-logo" src="images/shopcart.png"></a></div>
-	<div class="search-content"><a href="#search"><img class="header-logo" src="images/icon_search.png"></a></div>	
+	
 </header>
 
 <section>

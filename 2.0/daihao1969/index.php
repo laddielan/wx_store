@@ -12,6 +12,10 @@ if (!isset($_GET['echostr'])) {
     $wechatObj->valid();
 }
 
+
+
+
+
 class wechatCallbackapiTest
 {
     //验证签名
@@ -85,9 +89,9 @@ class wechatCallbackapiTest
         switch ($object->Event)
         {
             case "subscribe":
-                $content = "欢迎你\n请回复以下关键字：文本 表情 单图文 多图文 音乐\n请按住说话 或 点击 + 再分别发送以下内容：语音 图片 小视频 我的收藏 位置\n回复“首页”可进入书城首页~";
-                $content .= (!empty($object->EventKey))?("\n来自二维码场景 ".str_replace("qrscene_","",$object->EventKey)):"";
-				
+                $content = $this->get_user_info($object);
+                $content .= " 欢迎你\n请回复以下关键字：文本 表情 单图文 多图文 音乐\n请按住说话 或 点击 + 再分别发送以下内容：语音 图片 小视频 我的收藏 位置\n回复“首页”可进入书城首页~";
+                $content .= (!empty($object->EventKey))?("\n来自二维码场景 ".str_replace("qrscene_","",$object->EventKey)):"";				
                 break;
             case "unsubscribe":
                 $content = "取消关注";
@@ -111,8 +115,7 @@ class wechatCallbackapiTest
 关掉电视，帮我把书包背上。 
 你还在我身旁。
 
----【香港中文大学《独立时代》杂志微情书征文大赛一等奖】
-";break;
+                                ";break;
                     case "段子":
                         $content = "小学时有道关联词填空：
 他（ ）牺牲生命，（ ）出卖组织。
@@ -121,7 +124,7 @@ class wechatCallbackapiTest
 更有个人全校出名，他填的“白白 忘了”。";break;
                     case "开发3":
                         $content = "说了没开发，你还点干嘛？
-点也没用→_→";break;
+→_→点也没用";break;
                     default:
                         $content = "点击菜单：".$object->EventKey;
                         break;
@@ -464,5 +467,53 @@ $item_str    </Articles>
             file_put_contents($log_filename, date('Y-m-d H:i:s')." ".$log_content."\r\n", FILE_APPEND);
         }
     }
+
+
+    private function get_user_info($object){
+        $appid = "wx2d54a161bbd17895";
+        $appsecret = "82c3de30cede9db4acdb33894f10f5bc";
+        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
+        //获取access_token
+        $output = https_request($url);
+        $jsoninfo = json_decode($output,true);
+        $access_token = $jsoninfo["access_token"];
+
+        if(null==$access_token){
+            return "error";
+        }
+        //通过OpenID获取用户信息
+        $openid = $object->FromUserName;
+        $url = "";
+        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
+        $output = "";
+        $output = https_request($url);
+        $userinfo = json_decode($output,true);
+
+        if(null == $userinfo["nickname"]){
+            return "error";
+        }
+        return $userinfo["nickname"];
+    }
 }
+
+
+//用于向微信发送消息
+    function https_request($url,$data = null){
+        
+        $curl = curl_init();
+        curl_setopt($curl,CURLOPT_URL,$url);
+        curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,FALSE);
+        curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,FALSE);
+        
+        if(!empty($data)){
+            curl_setopt($curl,CURLOPT_POST,1);
+            curl_setopt($curl,CURLOPT_POSTFIELDS,$data);
+        }
+        
+        curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
+        $output = curl_exec($curl);
+        curl_close($curl);
+        return $output;
+    }
+
 ?>
