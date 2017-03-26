@@ -1,16 +1,9 @@
 <?php 
-
+require_once 'lib/db.php';
 
 	//$db_server = mysqli_connect(SAE_MYSQL_HOST_M,SAE_MYSQL_USER,SAE_MYSQL_PASS,SAE_MYSQL_DB,SAE_MYSQL_PORT);
-	$db_server = mysqli_connect('LOCALHOST','root','laddie','info_of_user');
-
+	$db_server = connect_db();
 	
-	if(!$db_server){
-		die("Unable to connect to MySQL: ".mysqli_connect_error());
-	}
-		
-	mysqli_set_charset($db_server, 'utf8');  
-
 //选择数据库及 查询数据库	
     $book_ID = $_REQUEST["ID"];
     $query = "SELECT * FROM books WHERE ID='$book_ID'";
@@ -25,6 +18,7 @@
 		$j++;
     }
 	
+    
 	
 
 
@@ -74,6 +68,10 @@ function sanitizeMySQL($var)
 	$var = sanitizeString($var);
 	return $var;
 }
+
+
+
+
 ?>
 
 
@@ -89,9 +87,7 @@ function sanitizeMySQL($var)
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">    
 	<meta name="author" content="daihao1969" /> 
 	<title>图书详情</title>
-	<link rel="stylesheet" type="text/css" href="css/bookv0.css">
-
-	
+	<link rel="stylesheet" type="text/css" href="css/bookv2.css">
 </head>
 <body>
 
@@ -218,28 +214,30 @@ function sanitizeMySQL($var)
 </section>
 <section id="page_add_shopcart" class="page-add-shopcart-wrap">
 	<div class="page-add-shopcart-content">
+	<form method="get" action="lib/operate_db.php?action=addShopcart">
 		<div class="page-add-shopcart-info">
-		<div class="page-add-shopcart-title"><img class="past-book" src="images/book_002_1.jpg">
-		<img class="close-icon" id="page_close_btn" src="images/icon_close.png">
-			<p><?php echo $books[0]->name;?></p>
-			<p>
-				<span>&#65509;<?php echo $books[0]->nPrice;?></span><br>
-				定价：<del>&#65509;<?php echo $books[0]->oPrice;?></del>
-			</p>			
-		</div>
-		<div class="page-addd-shopcart-option">
-			<p >规格：</p><p id="page_guige"><input type="button" class="selected-option" name="" value="平装"> <input type="button" class="un-selected-option" name="" value="套装"></p>
-		</div>
-		<div class="page-add-shopcart-number">
-			购买数量：<input type="button" class="page-btn-sub" name="" id="page_num_btn_sub" value="-"><input id="page_text_num" onpropertychange="replaceNotNumber(this)" class="page-text-number" type="text" name="" value="1"><input id="page_num_btn_add" class="page-btn-add" type="button" name="" value="+"><br><span>剩余3件</span>
-		</div>
-		</div>
+			<div class="page-add-shopcart-title"><img class="past-book" src="images/book_002_1.jpg">
+			<img class="close-icon" id="page_close_btn" src="images/icon_close.png">
+				<p><?php echo $books[0]->name;?></p>
+				<p>
+					<span>&#65509;<?php echo $books[0]->nPrice;?></span><br>
+					定价：<del>&#65509;<?php echo $books[0]->oPrice;?></del>
+				</p>			
+			</div>		
+    		<div class="page-add-shopcart-option">
+    			<p >规格：</p><p id="page_guige"><?php echo "<input type='hidden' id='bookId' name='bookId' value='".$books[0]->ID."'/>" ?><input type="button" class="selected-option" name="" value="平装"> <input type="button" class="un-selected-option" name="" value="套装"></p>
+    		</div>
+    		<div class="page-add-shopcart-number">
+    			购买数量：<input type="button" class="page-btn-sub"  id="page_num_btn_sub" value="-"><input id="page_text_num" onpropertychange="replaceNotNumber(this)" class="page-text-number" type="text" name="bookNum" value="1"><input id="page_num_btn_add" class="page-btn-add" type="button" name="" value="+"><br><span>剩余3件</span>
+    		</div>
+    	</div>
 		<div class="page-next-act" id="page-next-act-btn-add">
-			<input class="page-next-act-btn" type="submit" name="" value="加入购物车">
+			<input id="addCart" class="page-next-act-btn" type="button" name="addCart" value="加入购物车">
 		</div>
 		<div class="page-next-act" id="page-next-act-btn-add-now">
-			<input class="page-next-act-btn" type="submit" name="" value="下一步">
+			<input id="buyCart" class="page-next-act-btn" type="button" name="buyCart" value="下一步">
 		</div>
+	</form>
 	</div>
 	
 </section>

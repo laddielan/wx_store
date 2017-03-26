@@ -99,6 +99,82 @@ function changeNumber(flag){
 		}			
 	}
 }
+
+//创建Ajax对象
+
+function createxmlHttp(){
+	/* Create a new XMLHttpRequest object to talk to the Web server */
+	var xmlHttp = false;
+	/*@cc_on @*/
+	/*@if (@_jscript_version >= 5)
+	try {
+	  xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+	try {
+	    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  } catch (e2) {
+	    xmlHttp = false;
+	  }
+	}
+	@end @*/
+
+	if (!xmlHttp && typeof XMLHttpRequest != 'undefined') {
+  		xmlHttp = new XMLHttpRequest();
+	}
+
+	return xmlHttp;
+}
+
+//Ajax加入购物车之后的回调函数
+
+function AddCartCallServer(xmlHttp){
+
+	var bookId = document.getElementById("bookId").value;
+	var bookNum = document.getElementById("page_text_num").value;
+
+	if(bookId == null||bookId =="")
+		return ;
+	var url = "./lib/operate_db.php?action=addShopcart&bookId="+escape(bookId)+"&bookNum="+escape(bookNum);
+//	var url = "./lib/operate_db.php";
+
+	// Open a connection to the server
+	xmlHttp.open("GET",url,true);
+
+	// Setup a function for the server to run when it's done
+	xmlHttp.onreadystatechange =function(){
+	
+		addPageControl(0);
+}
+
+  	// Send the request
+  	xmlHttp.send(null);
+  	
+}
+//Ajax立即购买之后的回调函数
+function BuyCartCallServer(xmlHttp){
+
+	var bookId = document.getElementById("bookId").value;
+	var bookNum = document.getElementById("page_text_num").value;
+
+	if(bookId == null||bookId =="")
+		return ;
+	var url = "./lib/operate_db.php?action=addShopcart&bookId="+escape(bookId)+"&bookNum="+escape(bookNum);
+//	var url = "./lib/operate_db.php";
+
+	// Open a connection to the server
+	xmlHttp.open("GET",url,true);
+
+	// Setup a function for the server to run when it's done
+	xmlHttp.onreadystatechange =function(){
+		addPageControl(0);
+		location.href = "shopcart.html";
+}
+
+
+  	// Send the request
+  	xmlHttp.send(null);
+  	
+}
 window.onload = function(){
 	setInterval(slide,3000);
 	exeSwitchClass();
@@ -126,5 +202,20 @@ window.onload = function(){
 	}
 	pageNumBtnAdd.onclick = function(){
 		changeNumber(1);
+	}
+	
+	
+	//点击加入购物车按钮，提交数据并隐藏遮罩层
+	
+	var addCartBtn = document.getElementById("addCart");
+	var buyCartBtn = document.getElementById("buyCart");
+	addCartBtn.onclick = function(){
+		var xmlHttp = createxmlHttp();
+		AddCartCallServer(xmlHttp);
+	}
+	buyCartBtn.onclick = function(){
+		console.log("here");
+		var xmlHttp = createxmlHttp();		
+		BuyCartCallServer(xmlHttp);
 	}
 }
