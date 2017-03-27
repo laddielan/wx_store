@@ -92,6 +92,7 @@ a:active{
 	border-bottom: solid 0.02rem #ccc;
 	margin-top: 0.2rem;
 	padding: 0.1rem 0.1rem;
+	position: relative;
 }
 ul.shopcart-wrap > li:first-child{
 	margin-top: 0;
@@ -129,6 +130,9 @@ ul.shopcart-wrap > li:first-child div{
 	vertical-align: middle;
 	float: left;
 }
+.item-book-name{
+	max-width: 6.6rem;
+}
 .shopcart-item:after {
 	clear: both;
 	content: "";
@@ -136,12 +140,72 @@ ul.shopcart-wrap > li:first-child div{
 }
 .shopcart-price{
 	color: #fd7d36;
+	margin-top: 0.2rem;
+	font-size: 0.4rem;
 }
 .shopcart-num{
 	float: right;
 	margin-right: 0.2rem;
 }
+.edit-wrap{
+	background: white;
+  	filter:Alpha(opacity=20);/* 只支持IE6、7、8、9 */
+  	width: 100%;
+	height: 100%;
+	background-color:rgba(255,255,255,0.2);
+	position: absolute;
+	top: 0;
+	display: none;
+}
 
+.edit-num-wrap{
+	background-color: rgba(255,255,255,1);
+	display: inline-block;
+	margin-left: 1.7rem;
+	font-size: 0.6rem;
+	width: 6.3rem;
+	height: 100%;
+	//padding: 0 0.4rem;
+	vertical-align: top;
+}
+
+input.page-text-number{
+	width: 1rem;
+	text-align: center;
+	border-top: 0.04rem #555 solid;
+	border-bottom: 0.04rem #555 solid;
+	background-color: #ffffff;
+	margin-top: 0.1rem;
+}
+input.page-btn-sub{
+	border: 0.04rem #555 solid;
+
+	background-color: #ffffff;
+	width: 0.7rem;
+	margin-top: 0.1rem;
+}
+input.page-btn-add{
+	border: 0.04rem #555 solid;
+	background-color: #ffffff;
+	width: 0.7rem;
+	margin-top: 0.1rem;
+}
+.edit-delete-wrap{
+	display: inline-block;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	padding-left: 0.2rem;
+	background-color: #ffffff;
+}
+
+.edit-delete-wrap input{
+	background: #fd7d36;
+	color: #ffffff;
+	border: none;
+	height: 100%;
+	width: 1.8rem;
+}
 .shopcart-footer{
 	position: fixed;
 	bottom: 0;
@@ -159,10 +223,10 @@ ul.shopcart-wrap > li:first-child div{
 }
 .shopcart-footer p{
 	font-size: 0.3rem;
-	margin-right: 2rem;
+	margin-right: 2.1rem;
 	display: inline-block;
 	line-height: 0.5rem;
-	margin: 0 0 0.2rem 5.8rem;
+	margin: 0 0 0.2rem 5rem;
 }
 .shopcart-footer input{
 	width: 2rem;
@@ -172,4 +236,41 @@ ul.shopcart-wrap > li:first-child div{
 	border: solid #ccc 0.01rem;
 	float: right;
 	height: 1.1rem;
+	display: inline-block;
 }
+
+.empty-cart-wrap{
+	text-align:center;
+	padding:4rem 0;
+}
+.empty-cart-wrap p{
+	font-size:0.6rem;
+	margin-bottom:0.6rem;
+}
+.empty-cart-wrap a{
+	
+	font-size:0.4rem;
+	padding:0.1rem 0.2rem;
+	color:#fd7d36;
+	border:0.01rem solid #fd7d36;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

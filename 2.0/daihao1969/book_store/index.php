@@ -80,7 +80,7 @@ function sanitizeMySQL($var)
 <section>
 <header class="header-wrap" id="top">
 	<div class="home-content"><a href=""><img class="header-logo" src="images/logo.png"/>9号书店</a></div>
-	<div class="shopcart-content"><a href="shopcart.html"><img class="header-logo" src="images/shopcart0.png"></a></div>
+	<div class="shopcart-content"><a href="shopcart.php"><img class="header-logo" src="images/shopcart0.png"></a></div>
 </header>
 <div class="search-wrap">
 	<form>

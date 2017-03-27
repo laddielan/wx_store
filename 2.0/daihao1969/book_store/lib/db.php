@@ -4,8 +4,8 @@
  * 连接数据库
  * @return resource
  * */
-function connect_db(){
-    
+function connect_db()
+{
     //$db_server = mysqli_connect(SAE_MYSQL_HOST_M,SAE_MYSQL_USER,SAE_MYSQL_PASS,SAE_MYSQL_DB,SAE_MYSQL_PORT);
     $db_server = mysqli_connect('LOCALHOST','root','laddie','info_of_user');
     mysqli_set_charset($db_server, 'utf8');	     
@@ -95,8 +95,9 @@ function fetchOne($conn,$sql, $result_type=MYSQLI_ASSOC){
  * @return multitype:
  */
 function fetchAll($conn,$sql, $result_type=MYSQLI_ASSOC){
-    $result = mysqli_query($sql);
-    while(@$row = mysqli_fetch_array($result, $result_type)){
+    $result = mysqli_query($conn, $sql);
+    $rows = Array();
+    while(@$row = mysqli_fetch_array($result,$result_type)){
         $rows[] = $row;
     }
     return $rows;
@@ -110,8 +111,9 @@ function fetchAll($conn,$sql, $result_type=MYSQLI_ASSOC){
  * @return number
  */
 function getResultNum($conn,$sql){
-    $result = mysqli_query($sql);
-    return mysqli_num_rows($result);
+    $result = mysqli_query($conn, $sql);
+    //return mysqli_num_rows($result);
+    return $result->num_rows;
 }
 
 
