@@ -1,3 +1,14 @@
+//DOM操作的一些基本函数
+
+//删除节点
+function removeElement(eleNode){
+	var parNode = eleNode.parentNode;
+	if(parNode){
+		parNode.removeChild(eleNode);
+	}
+}
+
+
 function setPxPerRem(){
     var cssEl = document.createElement('style');
     document.documentElement.firstElementChild.appendChild(cssEl);
@@ -66,11 +77,13 @@ function editNumBtnFunc(){
 		var addBtn = editDiv.getElementsByClassName("page-btn-add")[0];
 		var subBtn = editDiv.getElementsByClassName("page-btn-sub")[0];
 		var numBtn = editDiv.getElementsByClassName("page-text-number")[0];
+		var delBtn = editDiv.getElementsByClassName("edit-delete-btn")[0];
 		addBtn.onclick =(function(numBtn){
 			return function(){
 				numBtn.value++;
 			}
 		})(numBtn);
+
 		subBtn.onclick = (function(numBtn){
 			return function (){
 				if(numBtn.value>1){
@@ -78,9 +91,27 @@ function editNumBtnFunc(){
 				}
 			};
 		})(numBtn);
+
+		delBtn.onclick = (function(parI){
+			return function(){
+				var thisli = document.getElementsByClassName("shopcart-item")[parI+1];
+				var itemId = thisli.getElementsByTagName("input")[0].value;
+				xmlHttp = createxmlHttp();
+				editDeleteDB(xmlHttp,itemId);
+				removeElement(thisli);
+			};
+		})(i);
 	}	
 }
 
+function editDeleteDB(xmlHttp,itemId){
+	var url = "./lib/operate_db.php?action=deleteShopcart&itemId="+escape(itemId);
+	// Open a connection to the server
+	xmlHttp.open("GET",url,true);
+		// Send the request
+  	xmlHttp.send(null);
+  
+}
 //创建Ajax对象
 function createxmlHttp(){
 	/* Create a new XMLHttpRequest object to talk to the Web server */
@@ -104,10 +135,19 @@ function createxmlHttp(){
 
 	return xmlHttp;
 }
+function updateDB(xmlHttp,itemId,bookNum){
+	var url = "./lib/operate_db.php?action=updateShopcart&itemId="+escape(itemId)+"&bookNum="+escape(bookNum);
+	// Open a connection to the server
+	xmlHttp.open("GET",url,true);
+		// Send the request
+  	xmlHttp.send(null);
+  
+}
 
 //根据编辑结果的更新书籍数目
 function updateBookNum(){
 	var parlis = document.getElementById("shopcart-content").getElementsByTagName("li");
+	xmlHttp = createxmlHttp();
 	for(var i=1;i<parlis.length;i++){
 		var numPar = parlis[i].getElementsByClassName("shopcart-num")[0];
 
@@ -115,6 +155,8 @@ function updateBookNum(){
 		var numNode1 = parlis[i].getElementsByClassName("page-text-number")[0];
 		if(numNode1.value!== numNode0.innerHTML){
 			numNode0.innerHTML = numNode1.value;
+			var itemId = parlis[i].getElementsByTagName("input")[0].value;
+			updateDB(xmlHttp,itemId,numNode1.value);
 		}
 	}
 }
@@ -139,9 +181,9 @@ function switchEditCart(){
 		else{
 			for(var i=1;i<parlis.length;i++){
 				var editDiv = parlis[i].getElementsByClassName("edit-wrap");
-				editDiv[0].style.display = "block";
-				editNumBtnFunc();
+				editDiv[0].style.display = "block";			
 			}
+			editNumBtnFunc();
 			editBtn.value = "完成";
 			showFlag = false;
 		}

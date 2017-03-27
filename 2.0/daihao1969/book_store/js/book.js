@@ -135,7 +135,6 @@ function AddCartCallServer(xmlHttp){
 	if(bookId == null||bookId =="")
 		return ;
 	var url = "./lib/operate_db.php?action=addShopcart&bookId="+escape(bookId)+"&bookNum="+escape(bookNum);
-//	var url = "./lib/operate_db.php";
 
 	// Open a connection to the server
 	xmlHttp.open("GET",url,true);

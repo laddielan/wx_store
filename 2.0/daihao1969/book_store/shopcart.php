@@ -48,16 +48,16 @@ eod;
         $imgSrc = "images/books/".$int_num.'-'.(1).'.jpg';
         echo <<<eod
         <li class="shopcart-item">
-    				<div class="icon-check-wrap"><img class="icon-check" src="images/icon_to_check.png"></div>
-    				<a href="book.php?ID={$book_item["bookid"]}"><input type="hidden" value="{$book_item["itemid"]}"/><img class="shopcart-img" src={$imgSrc}><p class="item-book-name">{$book_info["书名"]}</p><br><p class="shopcart-price">&#65509;{$book_info["现价"]}</p><p class="shopcart-num">×<span>{$book_item["booknum"]}</sapn></p></a>
-    				<div class="edit-wrap">
-    					<div class="edit-num-wrap">
-    						<input type="button" class="page-btn-sub" value="-"><input  onpropertychange="replaceNotNumber(this)" class="page-text-number" type="text" name="bookNum" value='{$book_item["booknum"]}'><input class="page-btn-add" type="button" name="" value="+">
-    						<div class="shopcart-price">&#65509;{$book_info["现价"]}</div>
-    					</div>
-    					<div class="edit-delete-wrap"><input type="button" class="" id="edit-delete-btn" value="删除" name="edit-delete"></div>
-    				</div>
-    			</li>
+			<div class="icon-check-wrap"><img class="icon-check" src="images/icon_to_check.png"></div>
+			<a href="book.php?ID={$book_item["bookid"]}"><input type="hidden" value="{$book_item["itemid"]}"/><img class="shopcart-img" src={$imgSrc}><p class="item-book-name">{$book_info["书名"]}</p><br><p class="shopcart-price">&#65509;{$book_info["现价"]}</p><p class="shopcart-num">×<span>{$book_item["booknum"]}</sapn></p></a>
+			<div class="edit-wrap">
+				<div class="edit-num-wrap">
+					<input type="button" class="page-btn-sub" value="-"><input  onpropertychange="replaceNotNumber(this)" class="page-text-number" type="text" name="bookNum" value='{$book_item["booknum"]}'><input class="page-btn-add" type="button" name="" value="+">
+					<div class="shopcart-price">&#65509;{$book_info["现价"]}</div>
+				</div>
+				<div class="edit-delete-wrap"><input type="button" class="edit-delete-btn" value="删除" name="edit-delete"></div>
+			</div>
+		</li>
 eod;
     }
 

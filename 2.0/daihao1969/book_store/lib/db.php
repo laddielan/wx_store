@@ -126,7 +126,7 @@ function getResultNum($conn,$sql){
  */
 function delete($conn,$table, $where=null){
     $where = $where==null ? null :"WHERE ".$where;
-    $sql = "DELETE FROM {$table}{$where}";
+    $sql = "DELETE FROM {$table} {$where}";
     mysqli_query($conn,$sql);
     return mysqli_affected_rows($conn);
 }

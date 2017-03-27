@@ -29,12 +29,39 @@
         
         mysqli_close($conn);
     }
+
+    //根据itemId更新书籍数量
+    function updateShopcart(){
+        $itemid = $_GET["itemId"];
+        $booknum = $_GET["bookNum"];
+        $conn = connect_db();
+        $table = "shopcart";
+        $array = array("booknum"=>$booknum);
+        $where = "itemid=".$itemid;
+        update($conn,$table,$array,$where);
+        mysqli_close($conn);
+    }
+
+    //根据itemid删除条目
+    function deleteShopcart(){
+        $itemid = $_GET["itemId"];
+        $conn = connect_db();
+        $table = "shopcart";
+        $where = "itemid=".$itemid;
+        delete($conn,$table,$where);
+    }
     
 	if(isset($_GET["action"])){
 	    if($_GET["action"]=="addShopcart"){
 	        addShopcart();
 	    }
-	  
+	   else if($_GET["action"]=="updateShopcart"){
+            updateShopcart();
+       }
+       else if($_GET["action"]=="deleteShopcart"){
+            echo "Get~";
+            deleteShopcart();
+       }
 	}
 
 ?>
