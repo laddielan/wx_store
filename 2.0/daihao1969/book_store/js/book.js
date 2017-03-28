@@ -52,6 +52,7 @@ function exeSwitchClass(){
 	}
 }
 
+
 function addPageControl(flag){
 	var page = document.getElementById("page_add_shopcart");
 	var btn = document.getElementById("page-next-act-btn-add");
@@ -166,7 +167,7 @@ function BuyCartCallServer(xmlHttp){
 	// Setup a function for the server to run when it's done
 	xmlHttp.onreadystatechange =function(){
 		addPageControl(0);
-		location.href = "shopcart.html";
+		location.href = "shopcart.php";
 }
 
 
@@ -217,4 +218,5 @@ window.onload = function(){
 		var xmlHttp = createxmlHttp();		
 		BuyCartCallServer(xmlHttp);
 	}
+
 }

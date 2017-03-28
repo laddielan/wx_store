@@ -228,7 +228,7 @@ function sanitizeMySQL($var)
     			<p >规格：</p><p id="page_guige"><?php echo "<input type='hidden' id='bookId' name='bookId' value='".$books[0]->ID."'/>" ?><input type="button" class="selected-option" name="" value="平装"> <input type="button" class="un-selected-option" name="" value="套装"></p>
     		</div>
     		<div class="page-add-shopcart-number">
-    			购买数量：<input type="button" class="page-btn-sub"  id="page_num_btn_sub" value="-"><input id="page_text_num" onpropertychange="replaceNotNumber(this)" class="page-text-number" type="text" name="bookNum" value="1"><input id="page_num_btn_add" class="page-btn-add" type="button" name="" value="+"><br><span>剩余3件</span>
+    			购买数量：<input type="button" class="page-btn-sub"  id="page_num_btn_sub" value="-"><input id="page_text_num" class="page-text-number" type="text" name="bookNum" value="1"><input id="page_num_btn_add" class="page-btn-add" type="button" name="" value="+"><br><span>剩余3件</span>
     		</div>
     	</div>
 		<div class="page-next-act" id="page-next-act-btn-add">
