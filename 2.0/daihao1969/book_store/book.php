@@ -208,7 +208,7 @@ function sanitizeMySQL($var)
 </footer>
 <section class="fixed-menu">
 	<div class="fixed-kefu">客服</div>
-	<div class="fixed-shopcart">购物车</div>
+	<div class="fixed-shopcart"><a href="shopcart.php">购物车</a></div>
 	<div id="fixed_add_shopcart" class="fixed-add-shopcart">加入购物车</div>
 	<div id="fixed_add_now" class="fixed-add-now">立即购买</div>
 </section>

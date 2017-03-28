@@ -84,6 +84,6 @@ eod;
 ?>
 </div>
 
-<script type="text/javascript" src="js/user.js"></script>
+<script type="text/javascript" src="js/shopcart.js"></script>
 </body>
 </html>
