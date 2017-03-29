@@ -1,0 +1,166 @@
+html{
+	font-size: 36px;
+}
+body{font-size:62.5%;
+	font-family:"Microsoft YaHei",Arial;
+margin: 0;padding: 0; overflow-x:hidden; overflow-y:auto;color:#555;}   
+a{
+	text-decoration: none;
+}
+a:link{
+	color: #555;
+}
+a:visited{
+	color: #555;
+}
+a:hover{
+	color: #555;
+}
+a:active{
+	color: #555;
+}
+.viewport{ max-width:640px; min-width:300px; margin:0 auto;} 
+
+.header-wrap{
+	height: 1rem;
+	padding-top:0.14rem;
+	border-bottom: #DDD solid 0.04rem;
+	background-color: #DDD;
+}
+.header-wrap div{
+	display: inline-block;
+}
+.header-wrap img{
+	vertical-align: middle;
+}
+.home-content{
+	margin-right: 2.8rem;
+	margin-left: 0.12rem;
+	float: left;
+	font-size: 0.5rem;
+}
+.search-content{
+	float: right;
+}
+.shopcart-content{
+	margin-right: 0.2rem;
+	float: right;
+}
+.header-logo{
+	width: 1rem;
+	vertical-align: middle;
+}
+.icon-check-wrap{
+	display: inline-block;
+	float: left;
+	padding-right: 0.2rem;
+	//height: 1.3rem;
+
+}
+.icon-check{
+	width: 0.4rem;
+	vertical-align: middle;
+}
+.address-wrap{
+	font-size: 0.4rem;
+	line-height: 0.6rem;
+}
+.address-wrap:after{
+	clear: both;
+	content: "";
+	display: block;
+}
+.icon-edit{
+	width: 0.6rem;
+	vertical-align: middle;
+}
+.adrs-item-wrap{
+	border-bottom: 0.02rem solid #ccc;
+	padding: 0.2rem 0.1rem;
+}
+.icon-edit-wrap{
+	display: inline-block;
+	float: right;
+}
+
+.adrs-content-wrap{
+	display: inline-block;
+}
+
+
+.edit-wrap{
+	font-size: 0.4rem;
+	background-color: rgba(121,121,121,0.2);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+	display: none;
+}
+.edit-content{
+	background-color: white;
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+}
+.edit-header-wrap{
+	padding: 0.2rem 0.2rem;
+	background-color: #DDD;
+}
+.edit-header-wrap:after{
+	clear: both;
+	content: "";
+	display: block;
+}
+.edit-header-title{
+	display: inline-block;
+	width: 100%;
+	line-height: 0.5rem;
+}
+.edit-header-close{
+	display: inline-block;
+}
+.edit-header-close img{
+	width: 0.4rem;
+	vertical-align: middle;
+}
+.edit-header-save-wrap{
+	background-color: #DDD;
+	color: #fd7d36;
+	display: inline-block;
+	float: right;
+}
+
+.edit-item-wrap{
+	padding: 0.2rem 0.2rem;
+	border-bottom: 0.02rem solid #ccc;
+}
+.edit-wrap input{
+	border: none;
+	line-height: 0.5rem;
+	font-size: 0.4rem;
+	vertical-align: middle;
+}
+.edit-item-wrap textarea{
+	border: none;
+	width: 100%;
+	line-height: 0.5rem;
+	font-size: 0.4rem;
+	color: #555;
+	height: 2rem;
+}
+footer{
+	position: fixed;
+	bottom: 0;	
+	width: 100%;
+}
+footer input{
+	background-color: #fd7d36;
+	color: white;
+	font-size: 0.4rem;
+	width: 100%;
+	line-height: 0.8rem;
+	padding: 0.2rem 0;
+	border: none;
+}

@@ -7,7 +7,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />   
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">    
 	<meta name="author" content="daihao1969" /> 
-	<title>我的9号——9号书店</title>
+	<title>个人中心</title>
 
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/user.css">
