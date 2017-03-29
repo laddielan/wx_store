@@ -136,6 +136,19 @@ a:active{
 	padding: 0.2rem 0.2rem;
 	border-bottom: 0.02rem solid #ccc;
 }
+.edit-item-location-title{
+	display: inline-block;
+}
+.edit-item-location{
+	display: inline-block;
+	vertical-align: top;
+}
+.edit-item-location select{
+	font-size: 0.4rem;
+	display: block;
+	margin-bottom: 0.2rem;
+	padding-bottom: 0.1rem;
+}
 .edit-wrap input{
 	border: none;
 	line-height: 0.5rem;
