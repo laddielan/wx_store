@@ -1,3 +1,13 @@
+<?php 
+    require_once 'lib/db.php';
+    define("OPENID","oOEo4wdha12cmoJ2WFSAWBZ2vPpA");
+    $conn = connect_db();
+    $sql = "SELECT * FROM address WHERE openid='".OPENID."'";
+    $sql_res = fetchAll($conn, $sql);
+    
+    
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -21,10 +31,22 @@
 	<div class="home-content"><a href="index.php"><img class="header-logo" src="images/logo.png"/>9号书店</a></div>	
 </header>
 <section>
-	<ul class="address-wrap">
-		<li class="adrs-item-wrap"><div class="icon-check-wrap"><img class="icon-check" src="images/icon_to_check.png"></div><p class="adrs-content-wrap">兰志丹，18202751223<br>湖北省武汉市洪山区华中科技大学韵苑5栋</p><div class="icon-edit-wrap"><img class="icon-edit" src="images/icon_edit.png"></div></li>
-		<li class="adrs-item-wrap"><div class="icon-check-wrap"><img class="icon-check" src="images/icon_to_check.png"></div><p class="adrs-content-wrap">兰志丹，18202751223<br>湖北省武汉市洪山区华中科技大学韵苑5栋</p><div class="icon-edit-wrap"><img class="icon-edit" src="images/icon_edit.png"></div></li>
-	</ul>
+<?php 
+    if(!empty($sql_res)){
+        echo '<ul class="address-wrap">';
+       foreach ($sql_res as $adrs_item){
+           echo '<li class="adrs-item-wrap"><div class="icon-check-wrap"><img class="icon-check" src="images/icon_to_check.png"></div><p class="adrs-content-wrap">';
+           echo $adrs_item["name"].'，';
+           echo $adrs_item["phone"].'<br>'.$adrs_item["province"].' '.$adrs_item["city"].' '.$adrs_item["district"].' '.$adrs_item["address"];
+           echo '</p><div class="icon-edit-wrap"><img class="icon-edit" src="images/icon_edit.png"></div></li>';
+       }
+        echo '</ul>';
+    }
+    else{
+        echo '<h2>啥都没有</h2>';
+    }
+?>
+
 </section>
 <footer>
 	<input type="button" id="add-new-adrs" name="" value="添加新地址">

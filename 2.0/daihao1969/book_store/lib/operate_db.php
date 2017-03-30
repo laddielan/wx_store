@@ -71,17 +71,66 @@
         delete($conn,$table,$where);
     }
     
+    function addNewAdrs(){
+        $openid = $_POST["openid"];
+        $name = $_POST["name"];
+        $phone = $_POST["phone"];
+        $province = $_POST["province"];
+        $city = $_POST["city"];
+        $district = $_POST["district"];
+        $address = $_POST["address"];
+        $addressid = time();
+        
+        $conn = connect_db();
+        $table = "address";
+        $arr = array("addressid"=>$addressid,"openid"=>$openid, "name"=>$name, "phone"=>$phone, "province"=>$province, "city"=>$city, "district"=>$district, "address"=>$address);
+        
+        insert($conn, $table, $arr);
+        mysqli_close($conn);
+    }
+    
 	if(isset($_GET["action"])){
-	    if($_GET["action"]=="addShopcart"){
-	        addShopcart();
+       switch ($_GET["action"]){
+           case "addShopcart": addShopcart(); break;
+           case "updateShopcart":updateShopcart();break;
+           case "deleteShopcart":deleteShopcart();break;
+           
+       }
+	}
+	
+	if(isset($_POST["action"])){
+	    switch ($_POST["action"]){
+	        case "addAdrs":addNewAdrs();break;
 	    }
-	   else if($_GET["action"]=="updateShopcart"){
-            updateShopcart();
-       }
-       else if($_GET["action"]=="deleteShopcart"){
-            echo "Get~";
-            deleteShopcart();
-       }
 	}
 
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

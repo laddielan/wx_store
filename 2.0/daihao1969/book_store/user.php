@@ -26,7 +26,7 @@
 	</ul>
 	<p class="navbar"><a href="shopcart.php"><img class="left-icon" src="images/shopcart.png">我的购物车<img class="right-icon" src="images/icon_right.png"></a></p>
 	<p class="navbar"><a href=""><img class="left-icon" src="images/collect.png">我的收藏<img class="right-icon" src="images/icon_right.png"></a></p>
-	<p class="navbar"><a href="address.html"><img class="left-icon" src="images/address.png">收获地址设置<img class="right-icon" src="images/icon_right.png"></a></p>
+	<p class="navbar"><a href="address.php"><img class="left-icon" src="images/address.png">收获地址设置<img class="right-icon" src="images/icon_right.png"></a></p>
 </section>
 <script type="text/javascript" src="js/user.js"></script>
 </body>
