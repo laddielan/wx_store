@@ -1,0 +1,186 @@
+html{
+	font-size: 36px;
+}
+body{font-size:62.5%;
+	font-family:"Microsoft YaHei",Arial;
+margin: 0;padding: 0; overflow-x:hidden; overflow-y:auto;color:#555;}   
+a{
+	text-decoration: none;
+}
+a:link{
+	color: #555;
+}
+a:visited{
+	color: #555;
+}
+a:hover{
+	color: #555;
+}
+a:active{
+	color: #555;
+}
+.viewport{ max-width:640px; min-width:300px; margin:0 auto;} 
+
+
+
+.adrs-wrap{
+	font-size: 0.4rem;
+	padding: 0.2rem 0rem;
+	background: #e6eae3;
+}
+.adrs-wrap:after{
+	clear: both;
+	content: "";
+	display: block;
+}
+.adrs-icon-wrap{
+	display: inline-block;
+	float: left;
+	vertical-align: middle;
+	padding: 0 0.2rem;
+}
+.adrs-icon-wrap img{
+	width: 0.5rem;
+}
+
+.adrs-info-wrap{
+	display: inline-block;
+	max-width: 8rem;
+	line-height: 0.5rem;
+}
+.adrs-content-wrap:after{
+	clear: both;
+	display: block;
+	content: "";
+}
+
+.adrs-phone{
+	float: right;
+}
+.adrs-title-wrap{
+	display: inline-block;
+	float: left;
+}
+.adrs-content{
+	display: inline-block;
+}
+.adrs-edit-icon-wrap{
+	display: inline-block;
+	float: right;
+	vertical-align: middle;
+	line-height: 1.5rem;
+	padding: 0 0.2rem;
+}
+.adrs-edit-icon-wrap img{
+	width: 0.5rem;
+
+}
+
+.adrs-line-wrap{
+	width: 100%;
+	height: 0.2rem;
+	background: url(../images/rbline.png);
+	background-size: 10%;	
+}
+
+.book-wrap{
+	font-size: 0.4rem;
+	padding-left: 0.2rem;
+	border-bottom: solid #ccc 0.02rem;
+}
+.book-store-name{
+	line-height: 0.8rem;
+}
+.book-content-wrap{
+	background: #e6eae3;
+	padding: 0.2rem 0.2rem 0.2rem 0;
+	margin-bottom: 0.2rem;
+}
+.book-content-wrap:after{
+	clear: both;
+	content: "";
+	display: block;
+}
+.book-img-wrap{
+	display: inline-block;
+	float: left;
+}
+.book-img-wrap img{
+	width: 1.5rem;
+}
+.book-name-wrap{
+	line-height: 0.5rem;
+	width: 6rem;
+	display: inline-block;
+	padding-left: 0.2rem;
+}
+.book-author{
+	font-size: 0.36rem;
+}
+.book-num-wrap{
+	display: inline-block;
+	float: right;
+	max-width: 1.5rem;
+}
+.book-num-wrap p{
+	float: right;
+	margin-bottom: 0.3rem;
+}
+.express-wrap{
+	border-bottom: solid #ccc 0.02rem; 
+}
+.express-wrap:after{
+	clear: both;
+	content: "";
+	display: block;
+}
+.express-title{
+	display: inline-block;
+}
+.express-content{
+	max-width: 2rem;
+	float: right;
+	padding-right: 0.2rem;
+}
+.express-content p{
+	float: right;
+	line-height: 0.5rem;
+	font-size: 0.4rem;
+}
+.total-wrap{
+	padding: 0.2rem 0.2rem 0.2rem 0;
+}
+.total-wrap:after{
+	clear: both;
+	content: "";
+	display: block;
+
+}
+.total-wrap p{
+	display: inline-block;
+}
+.total-money{
+	color: #ef5464;
+	float: right;
+}
+
+.submit-wrap{
+	position: fixed;
+	bottom: 0;
+	font-size: 0.4rem;
+	width: 100%;
+	border-top: solid #ccc 0.02rem;
+}
+.submit-btn{
+	float: right;
+	padding: 0.4rem 0.4rem;
+	background: #ef5464;
+	color: white;
+}
+.submit-total-money{
+	color: #ef5464;
+}
+.submit-total-wrap{
+	float: right;
+	padding: 0.4rem 0.2rem;
+}

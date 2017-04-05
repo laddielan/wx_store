@@ -1,25 +1,7 @@
 <?php
     require_once 'db.php';
     
-    //净化用户输入
-    function sanitizeString($var)
-    {
-        if(get_magic_quotes_gpc())
-            $var = stripcslashes($var);
-            $var = htmlentities($var);
-            $var = strip_tags($var);
-    
-            return $var;
-    }
-    
-    
-    //数据库保护
-    function sanitizeMySQL($var)
-    {
-        $var = mysqli_real_escape_string($var);
-        $var = sanitizeString($var);
-        return $var;
-    }
+   
     
     function addShopcart(){
         $bookid = $_GET["bookId"];
@@ -72,16 +54,17 @@
     }
     
     function addNewAdrs(){
+        $conn = connect_db();
         $openid = $_POST["openid"];
         $name = $_POST["name"];
         $phone = $_POST["phone"];
         $province = $_POST["province"];
         $city = $_POST["city"];
         $district = $_POST["district"];
-        $address = $_POST["address"];
+        $address =  $_POST["address"];
         $addressid = time();
-        
-        $conn = connect_db();
+       
+      
         $table = "address";
         $arr = array("addressid"=>$addressid,"openid"=>$openid, "name"=>$name, "phone"=>$phone, "province"=>$province, "city"=>$city, "district"=>$district, "address"=>$address);
         

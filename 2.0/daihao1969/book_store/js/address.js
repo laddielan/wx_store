@@ -74,16 +74,17 @@ function submitNewAdrs(){
     xmlHttp.open("post",url,true);
     xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  
     xmlHttp.send(postBody);
+
     xmlHttp.onreadystatechange = function(){
          if(xmlHttp.readyState==4){
-            if(xmlHttp.status == 200){         
+            if(xmlHttp.status == 200){       
                 location.reload(true);  
             }
             else{
                 alert("由于网络原因，保存失败");
             }
            
-        }
+        } 
     } 
    
    
