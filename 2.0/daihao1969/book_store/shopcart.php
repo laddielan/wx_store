@@ -1,8 +1,10 @@
 <?php 
 	require_once 'lib/db.php';
     
-	define("OPENID", "oOEo4wdha12cmoJ2WFSAWBZ2vPpA");
+    session_start();
 
+    $_SESSION['openid'] = "oOEo4wdha12cmoJ2WFSAWBZ2vPpA";
+    define("OPENID", $_SESSION['openid']);
 	$conn = connect_db();
 	$sql = "SELECT * FROM shopcart WHERE openid='".OPENID."'";
 	$sql_res = fetchAll($conn, $sql);
@@ -67,7 +69,7 @@ eod;
     	<footer class="shopcart-footer">
     		<div>
     			<p><span class="shopcart-price">合计：&#65509;<span>0</span></span><br>不含运费</p>
-    			<input type="submit" name="buy" value="结算">
+    			<input id="buy" type="button" disabled="disabled" name="buy" value="结算">
     		</div>
     	</footer>
     </form>
@@ -83,7 +85,7 @@ eod;
 }
 ?>
 </div>
-
-<script type="text/javascript" src="js/shopcart.js"></script>
+<script type="text/javascript" src="js/cookie.js?randomId=<%=Math.random()%>"></script>
+<script type="text/javascript" src="js/shopcart.js?randomId=<%=Math.random()%>"></script>
 </body>
 </html>

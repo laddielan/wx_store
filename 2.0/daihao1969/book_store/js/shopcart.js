@@ -1,3 +1,7 @@
+//全局变量
+//checkNum, Number, 记录购物车中被选中的条目数
+var checkNum = 0;
+
 //DOM操作的一些基本函数
 
 //删除节点
@@ -44,7 +48,12 @@ function setPxPerRem(){
     cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
 }
 
-setPxPerRem();
+//从路径找出文件名
+function srcToFileName(src){
+	var srcarr = src.split("/");
+	var filename = srcarr[srcarr.length-1];
+	return filename;
+}
 
 function updateTotalPrice(){
 
@@ -66,6 +75,21 @@ function updateTotalPrice(){
 	totalSpan.innerHTML = totalPrice.toFixed(2);
 }
 
+function switchBuyBtn(){
+	var buybtn = document.getElementById("buy");
+	if(checkNum>0){
+		buybtn.value = "结算("+checkNum+")";
+		buybtn.style.background= "#F66";
+		buybtn.style.color = "white";
+		buybtn.disabled = "";
+	}
+	else{
+		buybtn.value = "结算";
+		buybtn.style.background= "#ccc";
+		buybtn.style.color = "black";
+		buybtn.disabled = "disabled";
+	}
+}
 function switchCheck(){
 
 	var items = document.getElementById("shopcart-content").getElementsByTagName("li");
@@ -75,18 +99,19 @@ function switchCheck(){
 		var checkDiv = items[i].getElementsByTagName("div");
 		checkDiv[0].onclick = function(){
 			var img = this.getElementsByTagName("img");
-			var imgsrc = img[0].src;
-			var imgsrcarr = imgsrc.split("/");
-			imgsrc = imgsrcarr[imgsrcarr.length-1];
+			var imgsrc = srcToFileName(img[0].src);
 			if(imgsrc == "icon_to_check.png"){
 				img[0].src = "images/icon_checked.png";
+				checkNum++;
+				switchBuyBtn();
 			}
 			else{
 				img[0].src = "images/icon_to_check.png";
 				var checkAllDiv = items[0].getElementsByTagName("div")[0].getElementsByTagName("img")[0];
 				checkAllDiv.src = "images/icon_to_check.png";
+				checkNum--;
+				switchBuyBtn();
 			}
-
 			updateTotalPrice();
 		}
 	}
@@ -94,15 +119,15 @@ function switchCheck(){
 	var checkAllDiv = items[0].getElementsByTagName("div")[0];
 	checkAllDiv.onclick = function(){
 		var img = this.getElementsByTagName("img");
-		var imgsrc = img[0].src;
-		var imgsrcarr = imgsrc.split("/");
-		imgsrc = imgsrcarr[imgsrcarr.length-1];
+		var imgsrc = srcToFileName(img[0].src);
 		if(imgsrc == "icon_to_check.png"){
 			img[0].src = "images/icon_checked.png";
 			var checkItemImgs = document.getElementById("shopcart-content").getElementsByClassName("icon-check");
 			for(var j=0;j<checkItemImgs.length;j++){
 				checkItemImgs[j].src = "images/icon_checked.png";
 			}
+			checkNum = items.length-1;
+			switchBuyBtn();
 		}
 		else{
 			img[0].src = "images/icon_to_check.png";
@@ -110,6 +135,8 @@ function switchCheck(){
 			for(var j=0;j<checkItemImgs.length;j++){
 				checkItemImgs[j].src = "images/icon_to_check.png";
 			}
+			checkNum = 0;
+			switchBuyBtn();
 		}
 		updateTotalPrice();
 	} 
@@ -242,9 +269,40 @@ function switchEditCart(){
 }
 
 
+function submitShopcart(){
+	var items = document.getElementById("shopcart-content").getElementsByTagName("li");
+	var bookids = new Array();
+	var booknums = new Array();
+	var bookprices = new Array();
+	for(var i=1;i<items.length;i++){
+		var img = items[i].getElementsByTagName("img")[0];
+		var imgsrc = srcToFileName(img.src);
+		if(imgsrc == "icon_checked.png"){
+			var thisbookid = items[i].getElementsByTagName("input")[0].value;
+			var thisbooknum = items[i].getElementsByClassName("shopcart-num")[0].getElementsByTagName("span").innerHTML;
+			var thisbookprice = items[i].getElementsByClassName("shopcart-price")[0].getElementsByTagName("span").innerHTML;
+			bookids.push(thisbookid);
+			booknums.push(thisbooknum);
+			bookprices.push(thisbookprice);
+		}
+	}
+
+	var itemidarr = bookids.join(',');
+	var booknumarr = booknums.join(',');
+	var bookpricearr = bookprices.join(',');
+
+	setCookie("itemidarr",itemidarr,1);
+	location.href = "order.php";
+}
 
 window.onload = function(){
+	setPxPerRem();
 	switchCheck();
 	switchEditCart();
 	addEventNumBtn();
+
+	var buybtn = document.getElementById("buy");
+	buybtn.onclick = function(){
+		submitShopcart();
+	}
 }

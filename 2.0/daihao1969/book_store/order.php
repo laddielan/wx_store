@@ -1,3 +1,17 @@
+<?php
+ 	session_start();
+ 	$fromurl = "http://localhost:88/php_mysql/book_store/shopcart.php";
+	if(!isset($_SESSION['openid'])||!isset($_SERVER['HTTP_REFERER'])|| $_SERVER['HTTP_REFERER'] != $fromurl){
+		echo '<meta http-equiv="refresh" content="0;url=http://localhost:88/php_mysql/book_store/index.php">';
+		exit();
+	}
+	
+	$itemids =explode(',', $_COOKIE['itemidarr']);
+	print_r($itemids);
+	
+
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -10,6 +24,7 @@
 	<title>待付款的订单</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/order.css">
+	<script type="text/javascript" src="js/common.js"></script>
 </head>
 <body>
 <section class="adrs-wrap">
@@ -76,5 +91,6 @@
 	<div class="submit-btn">提交订单</div>
 	<div class="submit-total-wrap">合计：<span class="submit-total-money">&#65509;88.00</span></div>
 </footer>
+<script type="text/javascript" src="js/order.js"></script>
 </body>
 </html>

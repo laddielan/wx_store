@@ -9,7 +9,6 @@ function setPxPerRem(){
 }
     
 
-
 //创建Ajax对象
 function createxmlHttp(){
 	/* Create a new XMLHttpRequest object to talk to the Web server */
