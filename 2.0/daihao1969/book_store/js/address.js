@@ -87,9 +87,7 @@ function submitNewAdrs(){
         } 
     } 
    
-   
     return true;
-  
 }
 
 

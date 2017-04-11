@@ -72,18 +72,57 @@
         mysqli_close($conn);
     }
     
+	
+	
+	function addOrder(){
+	   
+	    $addressid = $_POST["addressid"];
+	    $itemsid = $_POST["itemsid"];
+	    $itemid_arr = explode(",",$itemsid);
+	    
+	    $conn = connect_db();
+	    
+	    //获取OpenID
+	    $sql = "SELECT openid FROM address WHERE addressid=".$addressid;
+	    $openid_res = fetchAll($conn, $sql);
+	    $openid =  $openid_res[0]["openid"];
+	    $orderid = "O".time();
+	    
+	    $table = "orders";
+	    $order_arr = array("openid"=>$openid,"orderid"=>$orderid,"addressid"=>$addressid,"state"=>0,"createtime"=>time());
+	    insert($conn, $table, $order_arr);
+	    
+
+	    foreach ($itemid_arr as $itemid){
+	     
+	        $sql = "SELECT booknum,bookid FROM shopcart WHERE itemid=".$itemid;
+	        $bookinfo = fetchAll($conn, $sql);
+	       
+	        //把购物车里的这条记录删除
+	        $table = "shopcart";
+	        $where = "itemid='".$itemid."'";
+	        delete($conn, $table,$where);
+	        
+	        //在订单内容表中添加这条数据
+	        $table = "order_content";
+	        $order_content_arr = array("contentid"=>time(),"orderid"=>$orderid,"bookid"=>$bookinfo[0]["bookid"],"booknum"=>$bookinfo[0]["booknum"]);
+	        insert($conn, $table, $order_content_arr);
+	    }	    
+	}
+	
 	if(isset($_GET["action"])){
-       switch ($_GET["action"]){
-           case "addShopcart": addShopcart(); break;
-           case "updateShopcart":updateShopcart();break;
-           case "deleteShopcart":deleteShopcart();break;
-           
-       }
+	    switch ($_GET["action"]){
+	        case "addShopcart": addShopcart(); break;
+	        case "updateShopcart":updateShopcart();break;
+	        case "deleteShopcart":deleteShopcart();break;
+	         
+	    }
 	}
 	
 	if(isset($_POST["action"])){
 	    switch ($_POST["action"]){
 	        case "addAdrs":addNewAdrs();break;
+	        case "addOrder":addOrder();break;
 	    }
 	}
 
