@@ -24,7 +24,9 @@
 	<meta name="author" content="daihao1969" /> 
 	<title>待付款的订单</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/order.css">
+	<link rel="stylesheet" type="text/css" href="">
+	<link rel="stylesheet" type="text/css" href="css/order.css?randomId=<%=Math.random()%>">
+	<script type="text/javascript" src="js/zepto.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 </head>
 <body>
@@ -92,8 +94,8 @@ eod;
 	<div class="express-wrap">
 		<p class="express-title">配送方式</p>
 		<div class="express-content">
-			<p>韵达快递</p>
-			<p>&#65509;8.00</p>			
+			<p>快递随机发货</p>
+			<p>&#65509;<span id="freight">8.00</span></p>			
 		</div>
 	</div>
 	<div class="total-wrap">
@@ -101,11 +103,7 @@ eod;
 		<p class="total-money">&#65509;<span id="total_money">88.00</span></p>		
 	</div>	
 </section>
-<section id="pay_block" class="pay-block-wrap">
-	<input type="button" class="pay-input" name="pay" value="微信支付">
-	<a href="index.php">关闭</a>
-	<div id="responsetext"></div>
-</section>
+
 <footer class="submit-wrap">
 	<input type="button" class="submit-btn" id="submit_pay" name="" value="提交订单">
 	<div class="submit-total-wrap">合计：<span class="submit-total-money">&#65509;<span id="b_total_money">88.00</span></span></div>

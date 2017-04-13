@@ -14,7 +14,7 @@ require_once 'lib/db.php';
   //  $rows = mysql_num_rows($result);
     $j = 0;
     while(($row = $result->fetch_assoc())!=false){	
-		$books[$j] = new Book($row['ID'],$row['书名'],$row['作者'],$row['备注'],$row['原价'],$row['现价'],$row['出版社'],$row['语种'],$row['页数'],$row['开本'],$row['ISBN'],$row['条形码'],$row['商品尺寸'],$row['商品重量'],$row['品牌'],$row['编辑推荐'],$row['媒体推荐'],$row['作者简介'],$row['图片数量']);
+		$books[$j] = new Book($row['ID'],$row['书名'],$row['作者'],$row['备注'],$row['原价'],$row['现价'],$row['出版社'],$row['语种'],$row['页数'],$row['开本'],$row['ISBN'],$row['条形码'],$row['商品尺寸'],$row['商品重量'],$row['品牌'],$row['编辑推荐'],$row['媒体推荐'],$row['作者简介'],$row['图片数量'],$row['库存']);
 		$j++;
     }
 	
@@ -23,8 +23,8 @@ require_once 'lib/db.php';
 
 
 class Book{
-	public $ID,$name,$author,$oPrice,$nPrice,$remark,$press,$language,$page,$format,$ISBN,$barCode,$size,$weight,$brand,$copyReader,$mediaReader,$authorInfo,$imgNum;
-	function Book($id,$na,$au,$re,$op,$np,$pr,$la,$pa,$fo,$IS,$ba,$si,$we,$br,$co,$me,$auInfo,$im){
+	public $ID,$name,$author,$oPrice,$nPrice,$remark,$press,$language,$page,$format,$ISBN,$barCode,$size,$weight,$brand,$copyReader,$mediaReader,$authorInfo,$imgNum,$stock;
+	function Book($id,$na,$au,$re,$op,$np,$pr,$la,$pa,$fo,$IS,$ba,$si,$we,$br,$co,$me,$auInfo,$im,$sto){
 
 		$this->author = $au;
 		$this->authorInfo = $auInfo;
@@ -45,6 +45,7 @@ class Book{
 		$this->size = $si;
 		$this->weight = $we;
 		$this->imgNum = $im;
+		$this->stock = $sto;
 	}
 	
 }
@@ -104,12 +105,14 @@ function sanitizeMySQL($var)
 	<div class="slide-wrap">
 		<ul id="slideEles">
 		<?php 
+		  $firstImg = "";
 		  for($i=0;$i<$books[0]->imgNum;$i++){
 		      $num = substr($books[0]->ID, -4);		    
 		      $int_num = (int)$num;              
 		      $imgSrc = "images/books/".$int_num.'-'.($i+1).'.jpg';
 		  
 		      if($i==0){
+		          $firstImg = $imgSrc;
 		          echo "<li class='slide-show' style='display: block;'><img src=".$imgSrc."></li>";
 		      }
 			 else{
@@ -216,7 +219,7 @@ function sanitizeMySQL($var)
 	<div class="page-add-shopcart-content">
 	<form method="get" action="lib/operate_db.php?action=addShopcart">
 		<div class="page-add-shopcart-info">
-			<div class="page-add-shopcart-title"><img class="past-book" src="images/book_002_1.jpg">
+			<div class="page-add-shopcart-title"><img class="past-book" src=<?php echo $firstImg;?>>
 			<img class="close-icon" id="page_close_btn" src="images/icon_close.png">
 				<p><?php echo $books[0]->name;?></p>
 				<p>
@@ -228,7 +231,7 @@ function sanitizeMySQL($var)
     			<p >规格：</p><p id="page_guige"><?php echo "<input type='hidden' id='bookId' name='bookId' value='".$books[0]->ID."'/>" ?><input type="button" class="selected-option" name="" value="平装"> <input type="button" class="un-selected-option" name="" value="套装"></p>
     		</div>
     		<div class="page-add-shopcart-number">
-    			购买数量：<input type="button" class="page-btn-sub"  id="page_num_btn_sub" value="-"><input id="page_text_num" class="page-text-number" type="text" name="bookNum" value="1"><input id="page_num_btn_add" class="page-btn-add" type="button" name="" value="+"><br><span>剩余3件</span>
+    			购买数量：<input type="button" class="page-btn-sub"  id="page_num_btn_sub" value="-"><input id="page_text_num" class="page-text-number" type="text" name="bookNum" value="1"><input id="page_num_btn_add" class="page-btn-add" type="button" name="" value="+"><br><span>剩余<?php echo $books[0]->stock;?>件</span>
     		</div>
     	</div>
 		<div class="page-next-act" id="page-next-act-btn-add">

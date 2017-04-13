@@ -90,6 +90,8 @@ function switchBuyBtn(){
 		buybtn.disabled = "disabled";
 	}
 }
+
+
 function switchCheck(){
 
 	var items = document.getElementById("shopcart-content").getElementsByTagName("li");
@@ -295,14 +297,18 @@ function submitShopcart(){
 	location.href = "order.php";
 }
 
+setPxPerRem();
 window.onload = function(){
-	setPxPerRem();
-	switchCheck();
-	switchEditCart();
-	addEventNumBtn();
+	
+	if(document.getElementById("shopcart-content")){
+		switchCheck();
+		switchEditCart();
+		addEventNumBtn();
 
-	var buybtn = document.getElementById("buy");
-	buybtn.onclick = function(){
-		submitShopcart();
+		var buybtn = document.getElementById("buy");
+		buybtn.onclick = function(){
+			submitShopcart();
+		}
 	}
+	
 }

@@ -52,11 +52,11 @@ function update($conn,$table,$array,$where)
         else{
             $sep = ",";
         }        
-        $str.=$sep.$key."=".$val."";
+        $str.=$sep.$key."='".$val."'";
     }
     
     $sql = "UPDATE {$table} SET {$str}".($where == null?null:" WHERE ".$where);
-    echo $sql;
+    //echo $sql;
     $result = mysqli_query($conn, $sql);
     
     if($result){

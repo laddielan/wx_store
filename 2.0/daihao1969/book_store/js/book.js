@@ -142,7 +142,7 @@ function AddCartCallServer(xmlHttp){
 
 	// Setup a function for the server to run when it's done
 	xmlHttp.onreadystatechange =function(){
-	
+		console.log(xmlHttp.responseText);
 		addPageControl(0);
 }
 
@@ -168,7 +168,7 @@ function BuyCartCallServer(xmlHttp){
 	xmlHttp.onreadystatechange =function(){
 		addPageControl(0);
 		location.href = "shopcart.php";
-}
+	}
 
 
   	// Send the request
@@ -214,7 +214,6 @@ window.onload = function(){
 		AddCartCallServer(xmlHttp);
 	}
 	buyCartBtn.onclick = function(){
-		console.log("here");
 		var xmlHttp = createxmlHttp();		
 		BuyCartCallServer(xmlHttp);
 	}

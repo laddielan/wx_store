@@ -10,8 +10,20 @@ function countTotalMoney(){
 	}
 	var total_money_obj = document.getElementById("total_money");
 	var b_total_money_obj = document.getElementById("b_total_money");
+	var freight = document.getElementById("freight");
+
+	//计算是否需要运费
+	if(totalmoney>=68){
+		freight.innerHTML = "0";
+	}
+	else{
+		totalmoney +=8;
+		freight.innerHTML = "8";
+	}
+
 	total_money_obj.innerHTML = totalmoney.toFixed(2);
 	b_total_money_obj.innerHTML = totalmoney.toFixed(2);
+
 }
 
 function submitOrder(){
@@ -37,10 +49,8 @@ function submitOrder(){
     xmlHttp.onreadystatechange = function(){
     	if(xmlHttp.readyState==4){
 	        if(xmlHttp.status == 200){       
-	            var pay_block = document.getElementById("pay_block");
-	            var responsediv = document.getElementById("responsetext");
-				pay_block.style.display = "block";
-				responsediv.innerHTML = xmlHttp.responseText;
+	           window.location.href="ordertopay.php?orderid="+xmlHttp.responseText;
+	           //console.log(xmlHttp.responseText);
 	        }
 	        else{
 	            alert("由于网络原因，保存失败");
@@ -62,4 +72,6 @@ window.onload = function(){
 	setPxPerRem();
 	countTotalMoney();
 	submitBtn();
-}
+
+	
+};

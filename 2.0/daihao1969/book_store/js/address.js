@@ -45,8 +45,6 @@ function submitNewAdrs(){
         alert("请填写具体地址");
         return false;
     }
- 
-
 
     var a_province = "";
     var a_city = "";

@@ -18,7 +18,7 @@
   //  $rows = mysql_num_rows($result);
     $book_num = 0;
     while(($row = $result->fetch_assoc())!=false){	
-		$books[$book_num] = new Book($row['ID'],$row['书名'],$row['作者'],$row['原价']);
+		$books[$book_num] = new Book($row['ID'],$row['书名'],$row['作者'],$row['现价']);
 	//	$books[$j]->print_info();	
 		$book_num++;
     }
@@ -73,8 +73,8 @@ function sanitizeMySQL($var)
 	<meta name="author" content="daihao1969" /> 
 	<title>9号书店</title>
 	<link rel="stylesheet" type="text/css" href="css/weui.css">
-	<link rel="stylesheet" type="text/css" href="css/indexv9.css">
-	
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script type="text/javascript" src="js/zepto.min.js"></script>
 </head>
 <body>
 <section>
@@ -83,10 +83,92 @@ function sanitizeMySQL($var)
 	<div class="shopcart-content"><a href="shopcart.php"><img class="header-logo" src="images/shopcart0.png"></a></div>
 </header>
 <div class="search-wrap">
-	<form>
-		<input type="search" class="book-search" name="search_book" placeholder="搜索书名/作者"><input class="search-submit-btn" type="submit" value="搜索" name="search_book_submit">
-	</form>
+	<!--	<input type="search" class="book-search" name="search_book" placeholder="搜索书名/作者"><input class="search-submit-btn" type="submit" value="搜索" name="search_book_submit">
+	-->
+        <!--<a href="javascript:;" class="weui-btn weui-btn_primary">点击展现searchBar</a>-->
+        <div class="weui-search-bar" id="searchBar">
+            <form class="weui-search-bar__form">
+                <div class="weui-search-bar__box">
+                    <i class="weui-icon-search"></i>
+                    <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required/>
+                    <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                </div>
+                <label class="weui-search-bar__label" id="searchText">
+                    <i class="weui-icon-search"></i>
+                    <span>搜索</span>
+                </label>
+            </form>
+            <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+        </div>
+        <div class="weui-cells searchbar-result" id="searchResult">
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd weui-cell_primary">
+                    <p>实时搜索文本</p>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd weui-cell_primary">
+                    <p>实时搜索文本</p>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd weui-cell_primary">
+                    <p>实时搜索文本</p>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd weui-cell_primary">
+                    <p>实时搜索文本</p>
+                </div>
+            </div>
+        </div>
 </div>
+<script type="text/javascript">
+    $(function(){
+        var $searchBar = $('#searchBar'),
+            $searchResult = $('#searchResult'),
+            $searchText = $('#searchText'),
+            $searchInput = $('#searchInput'),
+            $searchClear = $('#searchClear'),
+            $searchCancel = $('#searchCancel');
+
+        function hideSearchResult(){
+            $searchResult.hide();
+            $searchInput.val('');
+        }
+        hideSearchResult();
+        function cancelSearch(){
+            hideSearchResult();
+            $searchBar.removeClass('weui-search-bar_focusing');
+            $searchText.show();
+        }
+
+        $searchText.on('click', function(){
+            $searchBar.addClass('weui-search-bar_focusing');
+            $searchInput.focus();
+        });
+        $searchInput
+            .on('blur', function () {
+                if(!this.value.length) cancelSearch();
+            })
+            .on('input', function(){
+                if(this.value.length) {
+                    $searchResult.show();
+                } else {
+                    $searchResult.hide();
+                }
+            })
+        ;
+        $searchClear.on('click', function(){
+            hideSearchResult();
+            $searchInput.focus();
+        });
+        $searchCancel.on('click', function(){
+            cancelSearch();
+            $searchInput.blur();
+        });
+    });
+</script>
 <div class="slide-wrap">
 	<ul id="slideEles">
 		<li class="slide-show" style="display: block;" ><a href=""><img src="images/bar_001.jpg"></a></li>
