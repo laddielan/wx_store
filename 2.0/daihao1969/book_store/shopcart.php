@@ -4,6 +4,7 @@
     session_start();
 
     $_SESSION['openid'] = "oOEo4wdha12cmoJ2WFSAWBZ2vPpA";
+    $_SESSION['enterOrder'] = true;
     define("OPENID", $_SESSION['openid']);
 	$conn = connect_db();
 	$sql = "SELECT * FROM shopcart WHERE openid='".OPENID."'";

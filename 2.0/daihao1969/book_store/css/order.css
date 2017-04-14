@@ -125,9 +125,9 @@ a:active{
 	display: inline-block;
 	float: right;
 	max-width: 1.5rem;
+	text-align: right;
 }
 .book-num-wrap p{
-	float: right;
 	margin-bottom: 0.3rem;
 }
 .express-wrap{
@@ -288,4 +288,48 @@ a.pay-btn{
 }
 .auto{
 	overflow: auto;
+}
+
+.icon-check-wrap{
+	display: inline-block;
+	float: left;
+	padding-right: 0.2rem;
+	//height: 1.3rem;
+
+}
+.icon-check{
+	width: 0.4rem;
+	vertical-align: middle;
+}
+.address-wrap{
+	font-size: 0.4rem;
+	line-height: 0.6rem;
+	background: white;
+	margin-top: 4rem;
+	max-height: 6rem;
+	overflow-y: auto;
+}
+.address-wrap:after{
+	clear: both;
+	content: "";
+	display: block;
+}
+.icon-edit{
+	width: 0.6rem;
+	vertical-align: middle;
+}
+.adrs-item-wrap{
+	border-bottom: 0.02rem solid #ccc;
+	padding: 0.2rem 0.1rem;
+}
+.adrs-content-wrap{
+	display: inline-block;
+}
+.address-popup-wrap{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	display: none;
 }

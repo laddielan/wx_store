@@ -17,12 +17,12 @@
 	<div class="home-content"><a href="index.php"><img class="header-logo" src="images/logo.png"/>9号书店</a></div>	
 </header>
 <section>
-	<p class="navbar"><a href="#"><img class="left-icon" src="images/all_orders.png">全部订单<img class="right-icon" src="images/icon_right.png"></a></p>
+	<p class="navbar"><a href="vieworder.php?action=allOrder"><img class="left-icon" src="images/all_orders.png">全部订单<img class="right-icon" src="images/icon_right.png"></a></p>
 	<ul class="sub-nav">
-		<li><a href="#"><img src="images/wait_to_pay.png"><br/>待付款</a></li>
-		<li><a href="#"><img src="images/wait_to_send.png"><br/>待发货</a></li>
-		<li><a href="#"><img src="images/sent.png"><br/>已发货</a></li>
-		<li><a href="#"><img src="images/done_orders.png"><br/>已完成</a></li>
+		<li><a href="vieworder.php?action=topay"><img src="images/wait_to_pay.png"><br/>待付款</a></li>
+		<li><a href="vieworder.php?action=tosend"><img src="images/wait_to_send.png"><br/>待发货</a></li>
+		<li><a href="vieworder.php?action=sent"><img src="images/sent.png"><br/>已发货</a></li>
+		<li><a href="vieworder.php?action=done"><img src="images/done_orders.png"><br/>已完成</a></li>
 	</ul>
 	<p class="navbar"><a href="shopcart.php"><img class="left-icon" src="images/shopcart.png">我的购物车<img class="right-icon" src="images/icon_right.png"></a></p>
 	<p class="navbar"><a href=""><img class="left-icon" src="images/collect.png">我的收藏<img class="right-icon" src="images/icon_right.png"></a></p>

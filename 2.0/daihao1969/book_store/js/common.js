@@ -8,7 +8,7 @@ function setPxPerRem(){
     cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
 }
     
-
+setPxPerRem();
 //创建Ajax对象
 function createxmlHttp(){
 	/* Create a new XMLHttpRequest object to talk to the Web server */

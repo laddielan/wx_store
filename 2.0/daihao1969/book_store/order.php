@@ -2,11 +2,11 @@
     require_once 'lib/db.php';
  	session_start();
  	$fromurl = "http://localhost:88/php_mysql/book_store/shopcart.php";
-	if(!isset($_SESSION['openid'])||!isset($_SERVER['HTTP_REFERER'])|| $_SERVER['HTTP_REFERER'] != $fromurl){
+	if(!isset($_SESSION['openid'])||!isset($_SERVER['HTTP_REFERER'])|| $_SERVER['HTTP_REFERER'] != $fromurl||!isset($_SESSION["enterOrder"])){
 		echo '<meta http-equiv="refresh" content="0;url=http://localhost:88/php_mysql/book_store/index.php">';
 		exit();
 	}
-	
+	define("OPENID","oOEo4wdha12cmoJ2WFSAWBZ2vPpA");
 	$itemids =explode(',', $_COOKIE['itemidarr']);
 	$conn = connect_db();
 
@@ -47,7 +47,7 @@ $adrs = fetchAll($conn, $sql);
 			<p class="adrs-content"><?php echo $adrs[0]["province"]." ".$adrs[0]["city"]." ".$adrs[0]["district"]." ".$adrs[0]["address"];?></p>
 		</div>
 	</div>
-	<div class="adrs-edit-icon-wrap">
+	<div id="edit_adrs" class="adrs-edit-icon-wrap">
 		<img src="images/icon_right.png">
 	</div>
 	<div class="adrs-line-wrap">
@@ -108,6 +108,25 @@ eod;
 	<input type="button" class="submit-btn" id="submit_pay" name="" value="提交订单">
 	<div class="submit-total-wrap">合计：<span class="submit-total-money">&#65509;<span id="b_total_money">88.00</span></span></div>
 </footer>
+<section id="adrs_popup" class="address-popup-wrap">
+<?php
+ $sql = "SELECT * FROM address WHERE openid='".OPENID."'";
+ $address_res = fetchAll($conn, $sql);
+if(!empty($address_res)){
+        echo '<ul class="address-wrap">';
+       foreach ($address_res as $adrs_item){
+           $address_li = <<<eod
+           <li class="adrs-item-wrap"><input type="hidden" value={$adrs_item["addressid"]}><div class="icon-check-wrap"><img class="icon-check" src="images/icon_to_check.png"></div><p class="adrs-content-wrap">{$adrs_item["name"]}，{$adrs_item["phone"]}<br>{$adrs_item["province"]} {$adrs_item["city"]} {$adrs_item["district"]} {$adrs_item["address"]}</p></li>
+eod;
+			echo $address_li;
+       }
+        echo '</ul>';
+    }
+    else{
+        echo '<h2>啥都没有</h2>';
+    }
+?>
+</section>
 <script type="text/javascript" src="js/order.js?randomId=<%=Math.random()%>"></script>
 </body>
 </html>

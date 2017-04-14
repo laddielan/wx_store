@@ -68,10 +68,24 @@ function submitBtn(){
 	}
 }
 
+function editAdrsBtn(){
+	var edit_adrs = document.getElementById("edit_adrs");
+	edit_adrs.onclick = function(){
+		var popup_adrs = document.getElementById("adrs_popup");
+		popup_adrs.style.display = "block";
+		var body = document.getElementsByTagName("body")[0];
+        body.setAttribute("class","hidden");
+		popup_adrs.onclick = function(){  
+	        popup_adrs.style.display = "none";
+	        var body = document.getElementsByTagName("body")[0];
+	        body.setAttribute("class","auto");  
+    	}; 
+	}
+}
+
 window.onload = function(){
 	setPxPerRem();
 	countTotalMoney();
 	submitBtn();
-
-	
+	editAdrsBtn();	
 };

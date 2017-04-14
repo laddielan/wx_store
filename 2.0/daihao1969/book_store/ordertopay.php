@@ -3,8 +3,11 @@
     if(isset($_GET["orderid"])){
         $orderid = $_GET["orderid"];
     }
-    $conn = connect_db();
- 
+    session_start();
+    if(isset($_SESSION["enterOrder"])){
+        unset($_SESSION["enterOrder"]);
+    }
+   $conn = connect_db();
    $sql = "SELECT addressid,state,createtime,amount,freight,express FROM orders WHERE orderid= '".$orderid."'";
    $order_info = fetchOne($conn, $sql);
    date_default_timezone_set('PRC');
@@ -118,7 +121,7 @@ eod;
 </section>
 <footer class="submit-wrap">
 	<div class="submit-btn" id="to_pay">去付款</div>
-	<div class="submit-total-wrap">合计：<span class="submit-total-money">&#65509;88.00</span></div>
+	<div class="submit-total-wrap">合计：<span class="submit-total-money">&#65509;<?php echo round($order_info["amount"],2);?></span></div>
 </footer>
 <script type="text/javascript" src="js/ordertopay.js"></script>
 </body>

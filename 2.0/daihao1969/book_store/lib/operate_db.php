@@ -73,44 +73,7 @@
 	
 	
 	function addOrder(){
-	   /*
-	    $addressid = $_POST["addressid"];
-	    $itemsid = $_POST["itemsid"];
-	    $itemid_arr = explode(",",$itemsid);
-	    
-	    $conn = connect_db();
-	    
-	    //获取OpenID
-	    $sql = "SELECT openid FROM address WHERE addressid=".$addressid;
-	    $openid_res = fetchAll($conn, $sql);
-	    $openid =  $openid_res[0]["openid"];
-	    $orderid = "O".time();
-	    
-	    $table = "orders";
-	    $order_arr = array("openid"=>$openid,"orderid"=>$orderid,"addressid"=>$addressid,"state"=>0,"createtime"=>time());
-	    insert($conn, $table, $order_arr);
-	    
-	    $amount = 0;
-	    foreach ($itemid_arr as $itemid){
-	     
-	        $sql = "SELECT booknum,bookid FROM shopcart WHERE itemid=".$itemid;
-	        $bookinfo = fetchAll($conn, $sql);
-	       
-	        //把购物车里的这条记录删除
-	        $table = "shopcart";
-	        $where = "itemid='".$itemid."'";
-	        delete($conn, $table,$where);
-	        
-	        //在订单内容表中添加这条数据
-	        $table = "order_content";
-	        $order_content_arr = array("contentid"=>time(),"orderid"=>$orderid,"bookid"=>$bookinfo[0]["bookid"],"booknum"=>$bookinfo[0]["booknum"]);
-	        insert($conn, $table, $order_content_arr);
-	        
-	        $sql = "SELECT 现价  FROM books WHERE bookid='".$bookinfo[0]["bookid"]."'";
-	        $money_res = fetchOne($conn, $sql);
-	        $amount = $amount + $money_res["现价"];
-	    }*/	 
-	    
+	 	    
 	    $addressid = $_POST["addressid"];
 	    $itemsid = $_POST["itemsid"];
 	    $itemid_arr = explode(",",$itemsid);
@@ -148,6 +111,7 @@
 	        $sql = "SELECT 现价  FROM books WHERE ID='".$bookinfo[0]["bookid"]."'";
 	        $money_res = fetchOne($conn, $sql);
 	        $amount = $amount + $money_res["现价"];
+	        
 	    }
 	     
 	    //若总金额大于68，包邮，邮费为0
@@ -173,6 +137,7 @@
 	    }
 
 	    $amount =$amount + $freight;
+
 	    $arr = array("freight"=>$freight,"amount"=>$amount,"express"=>$express);
 	    $table = "orders";
 	    $where = "orderid='".$orderid."'";
