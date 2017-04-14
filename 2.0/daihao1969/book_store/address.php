@@ -43,7 +43,7 @@
         echo '</ul>';
     }
     else{
-        echo '<h2>啥都没有</h2>';
+        echo '<h2 class="adrs-null-wrap">啥都没有╮(╯_╰)╭</h2>';
     }
 ?>
 

@@ -36,6 +36,9 @@ a:active{
 	content: "";
 	display: block;
 }
+.adrs-exist-wrap{
+	min-height: 1.2rem;
+}
 .adrs-icon-wrap{
 	display: inline-block;
 	float: left;
@@ -48,7 +51,7 @@ a:active{
 
 .adrs-info-wrap{
 	display: inline-block;
-	max-width: 8rem;
+	width: 8rem;
 	line-height: 0.5rem;
 }
 .adrs-content-wrap:after{
@@ -78,6 +81,41 @@ a:active{
 	width: 0.5rem;
 
 }
+.adrs-null-wrap{
+	//text-align: center;
+	height: 1.2rem;
+}
+.adrs-null-wrap a{
+	display: block;
+}
+.adrs-null-wrap a:after{
+	display: block;
+	clear: both;
+	content: "";
+}
+.add-adrs-icon-wrap{
+	float: left;
+}
+.add-adrs-icon-wrap img{
+	width: 1.2rem;
+}
+.add-adrs{
+	line-height: 1.2rem;
+	font-size: 0.4rem;
+	vertical-align: middle;
+	display: inline-block;
+	text-align: left;
+	padding-left: 0.4rem;
+}
+.add-adrs-edit-wrap{
+	float: right;
+	line-height: 1.2rem;
+}
+.add-adrs-edit-wrap img{
+	width: 0.8rem;
+	vertical-align: middle;
+}
+
 
 .adrs-line-wrap{
 	width: 100%;

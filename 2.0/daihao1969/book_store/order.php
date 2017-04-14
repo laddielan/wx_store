@@ -33,25 +33,54 @@
 <section class="adrs-wrap">
 <?php 
 $sql = "SELECT * FROM address WHERE openid='".$_SESSION['openid']."'";
-$adrs = fetchAll($conn, $sql);
+$adrs = fetchOne($conn, $sql);
 
+if(!empty($adrs)){
+	
+    $adrs_htm_content = <<<eod
+<div class="adrs-exist-wrap">
+<div class="adrs-icon-wrap">
+		<img src="images/address.png">
+</div>
+<div class="adrs-info-wrap">
+	<p>收货人：<span id="adrs_name">{$adrs["name"]}</span> <span id="adrs_phone" class="adrs-phone">{$adrs["phone"]}</span></p>
+	<div class="adrs-content-wrap">
+		<span class="adrs-title-wrap">收货地址：<input type="hidden" id="addressid" value={$adrs["addressid"]}></span><br/>
+		<p id="adrs_content" class="adrs-content">{$adrs["province"]} {$adrs["city"]}  {$adrs["district"]}  {$adrs["address"]}</p>
+	</div>
+</div>
+<div id="edit_adrs" class="adrs-edit-icon-wrap">
+	<img src="images/icon_right.png">
+</div>
+</div>
+    
+eod;
+		echo $adrs_htm_content;
+}
+else{
+    $html_content = <<<eod
+<div class="adrs-null-wrap">
+	<a href="address.php">
+		<div class="add-adrs-icon-wrap">
+			<img src="images/icon_add_adrs.png">
+		</div>
+		<p class="add-adrs">
+			新增收获地址
+		</p>
+		<div class="add-adrs-edit-wrap">
+			<img src="images/icon_right.png">
+		</div>
+	 </a>
+ </div>
+eod;
+    
+    echo $html_content;
+}
 
 ?>
-	<div class="adrs-icon-wrap">
-		<img src="images/address.png">
-	</div>
-	<div class="adrs-info-wrap">
-		<p class="">收货人：<?php echo $adrs[0]["name"]?> <span class="adrs-phone"><?php echo $adrs[0]["phone"]?></span></p>
-		<div class="adrs-content-wrap">
-			<span class="adrs-title-wrap">收货地址：<input type="hidden" id="addressid" value=<?php echo $adrs[0]['addressid']; ?>></span>
-			<p class="adrs-content"><?php echo $adrs[0]["province"]." ".$adrs[0]["city"]." ".$adrs[0]["district"]." ".$adrs[0]["address"];?></p>
-		</div>
-	</div>
-	<div id="edit_adrs" class="adrs-edit-icon-wrap">
-		<img src="images/icon_right.png">
-	</div>
-	<div class="adrs-line-wrap">
-	</div>
+
+<div class="adrs-line-wrap">
+</div>
 </section>
 
 <section class="book-wrap">
@@ -116,7 +145,7 @@ if(!empty($address_res)){
         echo '<ul class="address-wrap">';
        foreach ($address_res as $adrs_item){
            $address_li = <<<eod
-           <li class="adrs-item-wrap"><input type="hidden" value={$adrs_item["addressid"]}><div class="icon-check-wrap"><img class="icon-check" src="images/icon_to_check.png"></div><p class="adrs-content-wrap">{$adrs_item["name"]}，{$adrs_item["phone"]}<br>{$adrs_item["province"]} {$adrs_item["city"]} {$adrs_item["district"]} {$adrs_item["address"]}</p></li>
+           <li class="adrs-item-wrap"><input type="hidden" value={$adrs_item["addressid"]}><div class="icon-check-wrap"><img class="icon-check" src="images/icon_to_check.png"></div><p class="adrs-content-wrap"><span>{$adrs_item["name"]}</span>，<span>{$adrs_item["phone"]}</span><br><span>{$adrs_item["province"]} {$adrs_item["city"]} {$adrs_item["district"]} {$adrs_item["address"]}</span></p></li>
 eod;
 			echo $address_li;
        }

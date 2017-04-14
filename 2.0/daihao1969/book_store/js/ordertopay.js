@@ -3,8 +3,6 @@ window.onload = function(){
 	var pay_block = document.getElementById("pay_block");
 	var to_pay_btn = document.getElementById("to_pay");
 	we_pay_btn.onclick = function(){
-
-		console.log("wechat pay~");
 		var e=window.event?window.event:event; 
         if(e.stopPropagation){  
             e.stopPropagation();

@@ -86,8 +86,6 @@ a:active{
 .adrs-content-wrap{
 	display: inline-block;
 }
-
-
 .edit-wrap{
 	font-size: 0.4rem;
 	background-color: rgba(121,121,121,0.2);
@@ -163,6 +161,11 @@ a:active{
 	font-size: 0.4rem;
 	color: #555;
 	height: 2rem;
+}
+.adrs-null-wrap{
+	text-align: center;
+	margin-top: 1.6rem;
+	font-size: 0.5rem;
 }
 footer{
 	position: fixed;

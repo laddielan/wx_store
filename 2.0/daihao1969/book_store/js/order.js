@@ -28,6 +28,10 @@ function countTotalMoney(){
 
 function submitOrder(){
 	var lis = document.getElementById("books_content").getElementsByTagName("li");
+	if(!document.getElementById("addressid")){
+		alert("请先添加地址");
+		return false;
+	}
 	var addressid = document.getElementById("addressid").value;
 	var itemsid = null;
 	for (var i = 0; i <lis.length; i++) {
@@ -68,18 +72,91 @@ function submitBtn(){
 	}
 }
 
+function updateAdrs(){
+	var check_lis = document.getElementById("adrs_popup").getElementsByTagName("li");
+	var addressid = document.getElementById("addressid");
+	for(var i=0;i<check_lis.length;i++){
+		var id_input = check_lis[i].getElementsByTagName("input")[0];
+		if(id_input.value == addressid.value){
+			var adrs_name = document.getElementById("adrs_name");
+			var adrs_phone = document.getElementById("adrs_phone");
+			var adrs_content = document.getElementById("adrs_content");
+			var this_adrs = check_lis[i].getElementsByClassName("adrs-content-wrap")[0].getElementsByTagName("span");
+			adrs_name.innerHTML = this_adrs[0].innerHTML;
+			adrs_phone.innerHTML = this_adrs[1].innerHTML;
+			adrs_content.innerHTML = this_adrs[2].innerHTML;
+		}
+	}
+}
+function adrsCheck(){
+	var check_lis = document.getElementById("adrs_popup").getElementsByTagName("li");
+
+	for(var i=0;i<check_lis.length;i++){
+		check_lis[i].onclick = (function(i){
+			return function(){
+				var addressid = document.getElementById("addressid");
+				addressid.value = check_lis[i].getElementsByTagName("input")[0].value;
+				for(var j=0;j<check_lis.length;j++){
+					if(i==j){
+						check_lis[j].getElementsByTagName("img")[0].src = "./images/icon_checked.png";
+					}
+					else{
+						check_lis[j].getElementsByTagName("img")[0].src = "./images/icon_to_check.png";
+					}				
+				}
+			};
+		})(i);
+	}
+}
 function editAdrsBtn(){
 	var edit_adrs = document.getElementById("edit_adrs");
+	if(!edit_adrs){
+		return false;
+	}
 	edit_adrs.onclick = function(){
 		var popup_adrs = document.getElementById("adrs_popup");
-		popup_adrs.style.display = "block";
-		var body = document.getElementsByTagName("body")[0];
-        body.setAttribute("class","hidden");
-		popup_adrs.onclick = function(){  
-	        popup_adrs.style.display = "none";
-	        var body = document.getElementsByTagName("body")[0];
-	        body.setAttribute("class","auto");  
-    	}; 
+		if(popup_adrs){
+			popup_adrs.style.display = "block";
+
+			//禁止冒泡事件
+			var popup_ul = popup_adrs.getElementsByTagName("ul")[0];
+			popup_ul.onclick = function(){
+				var e=window.event?window.event:event; 
+		        if(e.stopPropagation){  
+		            e.stopPropagation();
+		        }else{  
+		            e.cancelBubble = true;  
+		        }  
+			};
+			//将当前选中地址勾选
+			var check_lis = document.getElementById("adrs_popup").getElementsByTagName("li");
+			var addressid = document.getElementById("addressid");
+			for(var i=0;i<check_lis.length;i++){
+				var i_li_adrs = check_lis[i].getElementsByTagName("input")[0];
+				if(i_li_adrs.value == addressid.value){
+					var i_img = check_lis[i].getElementsByTagName("img")[0];
+					i_img.src = "./images/icon_checked.png";
+				}
+			}
+
+			//给每项地址加上选中事件
+			adrsCheck();
+
+			//点击地址外的地方隐藏弹窗
+			var body = document.getElementsByTagName("body")[0];
+	        body.setAttribute("class","hidden");
+			popup_adrs.onclick = function(){  
+		        popup_adrs.style.display = "none";
+		        updateAdrs();
+		        var body = document.getElementsByTagName("body")[0];
+		        body.setAttribute("class","auto");  
+	    	}; 
+		}
+		else{
+		//没有地址
+
+		}
+		
 	}
 }
 
