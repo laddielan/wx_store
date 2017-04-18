@@ -2,9 +2,21 @@
 //checkNum, Number, 记录购物车中被选中的条目数
 var checkNum = 0;
 
+//前端页面内容动态显示方法
 //DOM操作的一些基本函数
 
-//删除节点
+/**
+ *
+ 前端页面内容动态显示方法。
+ DOM操作的一些基本函数。
+ 删除节点。
+ *
+ @method removeElement
+ *
+ @param 
+ *
+ @return 
+ */
 function removeElement(eleNode){
 	var parNode = eleNode.parentNode;
 	if(parNode){
@@ -12,7 +24,18 @@ function removeElement(eleNode){
 	}
 }
 
-//防止书籍数量框输入非数字——把非数字去除
+/**
+ *
+ 前端页面内容动态显示方法。
+ DOM操作的一些基本函数。
+ 防止书籍数量框输入非数字——把非数字去除。
+ *
+ @method inputFunc
+ *
+ @param 
+ *
+ @return 
+ */
 function inputFunc(event){
 	this_obj = event.target?event.target:window.event.target;
 	var pattern = /[^0-9]/g;
@@ -21,6 +44,18 @@ function inputFunc(event){
 	}
 }
 
+/**
+ *
+ UI显示模块。
+ DOM操作的一些基本函数。
+ 防止书籍数量框输入非数字—，在数字框失去焦点后检测，如果有非数字，调用inputFunc把非数字去除。
+ *
+ @method addEventNumBtn
+ *
+ @param 
+ *
+ @return 
+ */
 function addEventNumBtn(){
 	var numPars = document.getElementsByClassName("edit-wrap");
 	for(var i=0;i<numPars.length;i++){
@@ -37,24 +72,38 @@ function addEventNumBtn(){
 		}
 		
 	}
-	
-}
-function setPxPerRem(){
-    var cssEl = document.createElement('style');
-    document.documentElement.firstElementChild.appendChild(cssEl);
-    var dpr = 1;
-        //把viewport分成10份的rem，html标签的font-size设置为1rem的大小;
-    var pxPerRem = document.documentElement.clientWidth * dpr / 10;
-    cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
 }
 
-//从路径找出文件名
+/**
+ *
+ UI显示模块。
+ DOM操作的一些基本函数。
+ 从路径找出文件名。
+ *
+ @method srcToFileName
+ *
+ @param String src
+ *
+ @return String filename 
+ */
+
 function srcToFileName(src){
 	var srcarr = src.split("/");
 	var filename = srcarr[srcarr.length-1];
 	return filename;
 }
 
+/**
+ *
+ UI显示模块。
+ 更新总金额。
+ *
+ @method updateTotalPrice
+ *
+ @param 
+ *
+ @return 
+ */
 function updateTotalPrice(){
 
 	var items = document.getElementById("shopcart-content").getElementsByTagName("li");
@@ -75,6 +124,17 @@ function updateTotalPrice(){
 	totalSpan.innerHTML = totalPrice.toFixed(2);
 }
 
+/**
+ *
+ UI显示模块。
+ 改变"结算"按钮的样式：没有选中商品时不可点击，有选中商品时可以点击并且样式改变。
+ *
+ @method switchBuyBtn
+ *
+ @param 
+ *
+ @return 
+ */
 function switchBuyBtn(){
 	var buybtn = document.getElementById("buy");
 	if(checkNum>0){
@@ -91,7 +151,17 @@ function switchBuyBtn(){
 	}
 }
 
-
+/**
+ *
+ UI显示模块。
+ 改变商品选中时的样式：没有选中商品时圆圈为空心圆，选中时为另一种样式。
+ *
+ @method switchCheck
+ *
+ @param 
+ *
+ @return 
+ */
 function switchCheck(){
 
 	var items = document.getElementById("shopcart-content").getElementsByTagName("li");
@@ -144,9 +214,17 @@ function switchCheck(){
 	} 
 }
 
-
-
-//给编辑状态的“-”和“+”按钮添加点击事件
+/**
+ *
+ UI显示模块。
+ 给编辑状态的“-”和“+”按钮添加点击事件。
+ *
+ @method editNumBtnFunc
+ *
+ @param 
+ *
+ @return 
+ */
 function editNumBtnFunc(){
 	var parDivs = document.getElementsByClassName("edit-wrap");
 	for(var i=0;i<parDivs.length;i++){
@@ -182,47 +260,17 @@ function editNumBtnFunc(){
 	}	
 }
 
-function editDeleteDB(xmlHttp,itemId){
-	var url = "./lib/operate_db.php?action=deleteShopcart&itemId="+escape(itemId);
-	// Open a connection to the server
-	xmlHttp.open("GET",url,true);
-		// Send the request
-  	xmlHttp.send(null);
-  
-}
-//创建Ajax对象
-function createxmlHttp(){
-	/* Create a new XMLHttpRequest object to talk to the Web server */
-	var xmlHttp = false;
-	/*@cc_on @*/
-	/*@if (@_jscript_version >= 5)
-	try {
-	  xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-	} catch (e) {
-	try {
-	    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-	  } catch (e2) {
-	    xmlHttp = false;
-	  }
-	}
-	@end @*/
-
-	if (!xmlHttp && typeof XMLHttpRequest != 'undefined') {
-  		xmlHttp = new XMLHttpRequest();
-	}
-
-	return xmlHttp;
-}
-function updateDB(xmlHttp,itemId,bookNum){
-	var url = "./lib/operate_db.php?action=updateShopcart&itemId="+escape(itemId)+"&bookNum="+escape(bookNum);
-	// Open a connection to the server
-	xmlHttp.open("GET",url,true);
-		// Send the request
-  	xmlHttp.send(null);
-  
-}
-
-//根据编辑结果的更新书籍数目
+/**
+ *
+ UI显示模块。
+ 根据编辑结果的更新书籍数目。
+ *
+ @method updateBookNum
+ *
+ @param 
+ *
+ @return 
+ */
 function updateBookNum(){
 	var parlis = document.getElementById("shopcart-content").getElementsByTagName("li");
 	xmlHttp = createxmlHttp();
@@ -239,8 +287,17 @@ function updateBookNum(){
 	}
 }
 
-
-//"编辑按钮控制书籍条目的编辑状态"
+/**
+ *
+ UI显示模块。
+ 编辑按钮控制书籍条目的编辑状态。
+ *
+ @method switchEditCart
+ *
+ @param 
+ *
+ @return 
+ */
 function switchEditCart(){
 	var editBtn = document.getElementById("editBtn");
 	var showFlag = true;
@@ -270,7 +327,99 @@ function switchEditCart(){
 	}
 }
 
+/**
+ *
+ UI显示模块。
+ 根据设备屏幕尺寸设置每rem的px数，使页面显示兼容不同的设备。
+ *
+ @method setPxPerRem
+ *
+ @param 
+ *
+ @return 
+ */
+setPxPerRem();
 
+/**
+ *
+ UI显示模块。
+ 在页面内容加载完成后调用前端页面内容动态显示方法。
+ *
+ @method 
+ *
+ @param 
+ *
+ @return 
+ */
+window.onload = function(){	
+	if(document.getElementById("shopcart-content")){
+		switchCheck();
+		switchEditCart();
+		addEventNumBtn();
+
+		var buybtn = document.getElementById("buy");
+		buybtn.onclick = function(){
+			submitShopcart();
+		}
+	}	
+}
+
+/**
+ *
+ 数据更新模块。
+ *
+ 删除购物车里的商品。
+ 使用Ajax将需删除的商品在数据库的购物车里的itemid提交到operate_db.php。
+ *
+ @method editDeleteDB
+ *
+ @param Object xmlHttp,String itemId
+ *
+ @return 
+ */
+function editDeleteDB(xmlHttp,itemId){
+	var url = "./lib/operate_db.php?action=deleteShopcart&itemId="+escape(itemId);
+	// Open a connection to the server
+	xmlHttp.open("GET",url,true);
+		// Send the request
+  	xmlHttp.send(null);  
+}
+
+/**
+ *
+ 数据更新模块。
+ *
+ 更新购物车里的商品的数量。
+ 使用Ajax将需删除的商品在数据库的购物车里的itemid和新的数量提交到operate_db.php。
+ *
+ @method updateDB
+ *
+ @param Object xmlHttp,String itemId,Number booknum
+ *
+ @return 
+ */
+function updateDB(xmlHttp,itemId,bookNum){
+	var url = "./lib/operate_db.php?action=updateShopcart&itemId="+escape(itemId)+"&bookNum="+escape(bookNum);
+	// Open a connection to the server
+	xmlHttp.open("GET",url,true);
+		// Send the request
+  	xmlHttp.send(null);
+  
+}
+
+/**
+ *
+ 订单提交模块。
+ *
+ 提交购物车。
+ 将选中的要生成订单的商品的itemid连接成字符串存储在cookie里，然后跳转到order.php页面将其读出并生成订单。
+ *
+ @method submitShopcart
+ *
+ @param 
+ *
+ @return 
+ */
 function submitShopcart(){
 	var items = document.getElementById("shopcart-content").getElementsByTagName("li");
 	var bookids = new Array();
@@ -295,20 +444,4 @@ function submitShopcart(){
 
 	setCookie("itemidarr",itemidarr,1);
 	location.href = "order.php";
-}
-
-setPxPerRem();
-window.onload = function(){
-	
-	if(document.getElementById("shopcart-content")){
-		switchCheck();
-		switchEditCart();
-		addEventNumBtn();
-
-		var buybtn = document.getElementById("buy");
-		buybtn.onclick = function(){
-			submitShopcart();
-		}
-	}
-	
 }

@@ -1,12 +1,28 @@
 <?php
     require_once 'lib/db.php';
+
+/**
+ *
+ UI显示模块。
+ *
+ 本页为提交订单页面。
+ *
+ 从cookie里读出提交的书在购物车里的itemid，然后查询数据库将其显示出来
+ */
+
+
+//根据session和$_SERVER['HTTP_REFERER']来判断是不是从购物车页面跳转到本页面，如果不是，就返回首页。
  	session_start();
  	$fromurl = "http://localhost:88/php_mysql/book_store/shopcart.php";
+ 	//$fromurl = "http://2.daihao1969.applinzi.com/book_store/shopcart.php";
 	if(!isset($_SESSION['openid'])||!isset($_SERVER['HTTP_REFERER'])|| $_SERVER['HTTP_REFERER'] != $fromurl||!isset($_SESSION["enterOrder"])){
 		echo '<meta http-equiv="refresh" content="0;url=http://localhost:88/php_mysql/book_store/index.php">';
+		//echo '<meta http-equiv="refresh" content="0;url=http://2.daihao1969.applinzi.com/book_store/index.php">';
 		exit();
 	}
 	define("OPENID","oOEo4wdha12cmoJ2WFSAWBZ2vPpA");
+
+//从cookie里读出提交的书在购物车里的itemid，然后查询数据库将其显示出来。
 	$itemids =explode(',', $_COOKIE['itemidarr']);
 	$conn = connect_db();
 

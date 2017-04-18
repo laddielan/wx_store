@@ -1,5 +1,14 @@
 <?php 
     require_once 'lib/db.php';
+/**
+ *
+ UI显示模块。
+ *
+ 本页为订单状态页面。
+ *
+ 根据提交的订单id(orderid)，将数据库中的数据读取出来显示在页面中。
+ */
+
     if(isset($_GET["orderid"])){
         $orderid = $_GET["orderid"];
     }
@@ -12,7 +21,6 @@
    $order_info = fetchOne($conn, $sql);
    date_default_timezone_set('PRC');
    $deadline = date('Y-m-d H:i:s', ($order_info["createtime"]+86400));
-  // echo date('Y-m-d H:i:s', $order_info["createtime"]);
    switch($order_info["state"]){
        case 0:
            $title = "待付款的订单";
@@ -123,6 +131,6 @@ eod;
 	<div class="submit-btn" id="to_pay">去付款</div>
 	<div class="submit-total-wrap">合计：<span class="submit-total-money">&#65509;<?php echo round($order_info["amount"],2);?></span></div>
 </footer>
-<script type="text/javascript" src="js/ordertopay.js"></script>
+<script type="text/javascript" src="js/orderstate.js"></script>
 </body>
 </html>

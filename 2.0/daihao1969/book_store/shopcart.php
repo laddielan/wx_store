@@ -1,8 +1,14 @@
 <?php 
 	require_once 'lib/db.php';
-    
+/**
+ *
+ UI显示模块。
+ *
+ 本页为购物车页面。
+ *
+ 从数据库读出购物车里的内容，然后将其显示出来。
+ */   
     session_start();
-
     $_SESSION['openid'] = "oOEo4wdha12cmoJ2WFSAWBZ2vPpA";
     $_SESSION['enterOrder'] = true;
     define("OPENID", $_SESSION['openid']);
@@ -87,6 +93,7 @@ eod;
 ?>
 </div>
 <script type="text/javascript" src="js/cookie.js?randomId=<%=Math.random()%>"></script>
+<script type="text/javascript" src="js/common.js?randomId=<%=Math.random()%>"></script>
 <script type="text/javascript" src="js/shopcart.js?randomId=<%=Math.random()%>"></script>
 </body>
 </html>

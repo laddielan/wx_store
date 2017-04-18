@@ -1,7 +1,10 @@
 <?php
     require_once 'db.php';
     
-   
+/**
+ *
+ 数据处理模块。
+ */
     
     function addShopcart(){
         $bookid = $_GET["bookId"];
