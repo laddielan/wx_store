@@ -127,14 +127,14 @@ if(!empty($order_res)){
 			</div>
 		</div>
 		<div class="content-view-all">
-			<a class="view-all" href="ordertopay.php?orderid={$order_item["orderid"]}">查看全部{$order_item['itemnum']}件商品</a>
+			<a class="view-all" href="orderstate.php?orderid={$order_item["orderid"]}">查看全部{$order_item['itemnum']}件商品</a>
 		</div>
 	</div>
 	<div class="amount-wrap">
 		<p class="amount-content">合计：<span class="orange-color">&#65509;{$order_item['amount']}</span></p>
 	</div>
 	<div class="btn-wrap">
-		<a class="pay-btn" href="#">付款</a>
+		<a class="pay-btn" href="orderstate.php?orderid={$order_item["orderid"]}">付款</a>
 		<div class="cancle-btn">取消</div>
 	</div>
 </section>

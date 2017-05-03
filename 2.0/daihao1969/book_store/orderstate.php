@@ -51,6 +51,7 @@
 	<title><?php echo $title;?></title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/order.css">
+	<script type="text/javascript" src="js/cssrefresh.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 </head>
 <body class="hidden">
@@ -123,14 +124,15 @@ eod;
 	</div>
 </section>
 <section id="pay_block" class="pay-block-wrap">
-	<div class="pay-btn-wrap">
-		<a href="shopcart.php" id="we_pay" class="weui-btn weui-btn_primary" class="pay-btn">微信支付</a>
+	<div id="we_pay" class="pay-btn-wrap">
+		<!--<a href="#" id="we_pay" class="weui-btn weui-btn_primary" class="pay-btn">微信支付</a>-->
+		<img class="wx_pay_img" src="images/wx_pay.png" />
 	</div>	
 </section>
 <footer class="submit-wrap">
 	<div class="submit-btn" id="to_pay">去付款</div>
 	<div class="submit-total-wrap">合计：<span class="submit-total-money">&#65509;<?php echo round($order_info["amount"],2);?></span></div>
 </footer>
-<script type="text/javascript" src="js/orderstate.js"></script>
+<script type="text/javascript" src="js/orderstate2.js"></script>
 </body>
 </html>

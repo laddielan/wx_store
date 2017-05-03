@@ -4,6 +4,8 @@
 */
 header('Content-type:text');
 
+require_once 'book_store/lib/db.php';
+
 define("TOKEN", "weixin");
 $wechatObj = new wechatCallbackapiTest();
 if (!isset($_GET['echostr'])) {
@@ -206,10 +208,10 @@ class wechatCallbackapiTest
             $content = array("Title"=>"美女与野兽", "Description"=>"歌手：田馥甄/井柏然", "MusicUrl"=>"https://y.qq.com/portal/song/003lsK1L3pkn3v.html", "HQMusicUrl"=>"https://y.qq.com/portal/song/003lsK1L3pkn3v.html"); 
         }else if(strstr($keyword, "首页")){
             $content = array();
-            $content[] = array("Title"=>"9号书店","Description"=>"点击进入9号书店首页","PicUrl"=>"http://2.daihao1969.applinzi.com/book_store/images/logo.png","Url"=>"http://2.daihao1969.applinzi.com/book_store/index.php");
+            $content[] = array("Title"=>"9号书店","Description"=>"点击进入9号书店首页","PicUrl"=>"http://9book.55555.io/book_store/images/logo.png","Url"=>"http://9book.55555.io/book_store/index.php");
         }
         else{
-            $content = date("Y-m-d H:i:s",time())."\n\n".'请回复以下关键字：文本 表情 单图文 多图文 音乐\n请按住说话 或 点击 + 再分别发送以下内容：语音 图片 小视频 我的收藏 位置\n回复“首页”可进入书城首页，《自在独行》这本书可以点击进入';
+            $content = "";
         }
 
         if(is_array($content)){
@@ -468,7 +470,7 @@ $item_str    </Articles>
         }
     }
 
-
+    //用户关注时获取用户信息并存入数据库
     private function get_user_info($object){
         $appid = "wx2d54a161bbd17895";
         $appsecret = "82c3de30cede9db4acdb33894f10f5bc";
@@ -492,6 +494,27 @@ $item_str    </Articles>
         if(null == $userinfo["nickname"]){
             return "error";
         }
+        
+        //打开数据库
+        $conn = connect_db();
+        $table = "user";
+        $sql = "SELECT openid FROM user WHERE openid='".$userinfo["openid"]."'";
+        //如果已经存在这个用户（曾经关注过）
+        if(getResultNum($conn, $sql)){
+            $sql_arr = Array("nickname"=>$userinfo["nickname"], "sex"=>$userinfo["sex"], "subscribe"=>$userinfo["subscribe"], "city"=>$userinfo["city"], "country"=>$userinfo["country"], "province"=>$userinfo["province"], "subscribe_time"=>$userinfo["subscribe_time"], "language"=>$userinfo["language"]);
+            $where = "openid ='".$userinfo["openid"]."'";
+            update($conn, $table, $sql_arr, $where);
+        }
+        else{
+            $sql_arr = Array("openid"=>$userinfo["openid"], "nickname"=>$userinfo["nickname"], "sex"=>$userinfo["sex"], "subscribe"=>$userinfo["subscribe"], "city"=>$userinfo["city"], "country"=>$userinfo["country"], "province"=>$userinfo["province"], "subscribe_time"=>$userinfo["subscribe_time"], "language"=>$userinfo["language"]);
+            insert($conn, $table, $sql_arr);
+        }
+        
+        mysqli_close($conn);
+        
+        //设置cookie存在时间
+        $deadtime = time()*3600*24*30;
+        setcookie("9book_openid", $userinfo["openid"], $deadtime);
         return $userinfo["nickname"];
     }
 }

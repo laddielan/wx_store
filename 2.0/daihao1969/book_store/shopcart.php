@@ -8,10 +8,16 @@
  *
  从数据库读出购物车里的内容，然后将其显示出来。
  */   
+	if(isset($_COOKIE["9book_openid"])){
+	    define("OPENID", $_COOKIE["9book_openid"]);
+	}
+	else{
+	    
+	}
+	
     session_start();
-    $_SESSION['openid'] = "oOEo4wdha12cmoJ2WFSAWBZ2vPpA";
     $_SESSION['enterOrder'] = true;
-    define("OPENID", $_SESSION['openid']);
+   
 	$conn = connect_db();
 	$sql = "SELECT * FROM shopcart WHERE openid='".OPENID."'";
 	$sql_res = fetchAll($conn, $sql);

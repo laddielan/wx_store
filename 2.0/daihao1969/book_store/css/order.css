@@ -207,7 +207,7 @@ a:active{
 }
 .pay-block-wrap{
 	background: rgba(121,121,121,0.5);
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	height: 100%;
 	top: 0;
@@ -221,6 +221,9 @@ a:active{
 	bottom: 0;
 	width: 100%;
 	min-height: 3rem;
+}
+.wx_pay_img{
+	height: 5rem;
 }
 a.pay-btn{
 //	position: absolute;
