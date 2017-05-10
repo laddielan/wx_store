@@ -212,7 +212,7 @@ function sanitizeMySQL($var)
 	<div class="bottom"><img src="images/end.png"></div>
 </footer>
 <section class="fixed-menu">
-	<div class="fixed-kefu">客服</div>
+	<div class="fixed-kefu" id="wkf_kf">客服</div>
 	<div class="fixed-shopcart"><a href="shopcart.php">购物车</a></div>
 	<div id="fixed_add_shopcart" class="fixed-add-shopcart">加入购物车</div>
 	<div id="fixed_add_now" class="fixed-add-now">立即购买</div>
@@ -243,8 +243,13 @@ function sanitizeMySQL($var)
 			<input id="buyCart" class="page-next-act-btn" type="button" name="buyCart" value="下一步">
 		</div>
 	</form>
-	</div>
-	
+	</div>	
+</section>
+<section id="wkf_block_wrap" class="wkf-block-wrap">
+		<div id="wkf_block" class="wkf-block">
+		<p id="wkf_text">竟然被你发现了这里，这里还没有开发呢，等我开发了再来哈(*￣3￣)╭</p>
+		<img id="wkf_img" src="images/wkf_mm.jpg">
+		</div>
 </section>
 <script type="text/javascript" src="js/book.js"></script>
 </body>

@@ -83,15 +83,15 @@ function sanitizeMySQL($var)
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script type="text/javascript" src="js/zepto.min.js"></script>
 </head>
-<body>
+<body class="auto">
 <section>
-<header class="header-wrap" id="top">
-	<div class="home-content"><a href=""><img class="header-logo" src="images/logo.png"/>9号书店</a></div>
-	<div class="shopcart-content"><a href="shopcart.php"><img class="header-logo" src="images/shopcart0.png"></a></div>
-</header>
-<div class="search-wrap">
-		<input type="search" class="book-search" name="search_book" placeholder="搜索书名/作者"><input class="search-submit-btn" type="submit" value="搜索" name="search_book_submit">
-	
+	<header class="header-wrap" id="top">
+		<div class="home-content"><a href=""><img class="header-logo" src="images/logo.png"/>9号书店</a></div>
+		<div class="shopcart-content"><a href="shopcart.php"><img class="header-logo" src="images/shopcart0.png"></a></div>
+	</header>
+	<div class="search-wrap">
+		<input type="search" class="book-search" name="search_book" placeholder="搜索书名/作者"><input id="search_book_submit" class="search-submit-btn" type="button" value="搜索" name="search_book_submit" />
+		
         <!--<a href="javascript:;" class="weui-btn weui-btn_primary">点击展现searchBar</a>
         <div class="weui-search-bar" id="searchBar">
             <form class="weui-search-bar__form">
@@ -129,7 +129,7 @@ function sanitizeMySQL($var)
                 </div>
             </div>
         </div>-->
-</div>
+	</div>
 <!--
 <script type="text/javascript">
     $(function(){
@@ -177,20 +177,20 @@ function sanitizeMySQL($var)
         });
     });
 </script>-->
-<div class="slide-wrap">
-	<ul id="slideEles">
-		<li class="slide-show" style="display: block;" ><a href=""><img src="images/bar_001.jpg"></a></li>
-		<li class="slide-show"><a href=""><img src="images/bar_002.jpg"></a></li>
-		<li class="slide-show"><a href=""><img src="images/bar_003.jpg"></a></li>
-		<li class="slide-show"><a href=""><img src="images/bar_004.jpg"></a></li>
-	</ul>
-	<ul class="slide-flag-wrap" id="slideFlags">
-		<li class="slide-flag1"></li>
-		<li class="slide-flag2"></li>
-		<li class="slide-flag3"></li>
-		<li class="slide-flag4"></li>
-	</ul>	
-</div>	
+	<div class="slide-wrap">
+		<ul id="slideEles">
+			<li class="slide-show" style="display: block;" ><a href=""><img src="images/bar_001.jpg"></a></li>
+			<li class="slide-show"><a href=""><img src="images/bar_002.jpg"></a></li>
+			<li class="slide-show"><a href=""><img src="images/bar_003.jpg"></a></li>
+			<li class="slide-show"><a href=""><img src="images/bar_004.jpg"></a></li>
+		</ul>
+		<ul class="slide-flag-wrap" id="slideFlags">
+			<li class="slide-flag1"></li>
+			<li class="slide-flag2"></li>
+			<li class="slide-flag3"></li>
+			<li class="slide-flag4"></li>
+		</ul>	
+	</div>	
 </section>
 <section>
 	<nav class="nav-wrap">
@@ -316,6 +316,12 @@ function sanitizeMySQL($var)
 <div id="toTop" class="to-top">
 	<a href="#top"><img src="images/icon_top.png"></a>
 </div>
+<section id="wkf_block_wrap" class="wkf-block-wrap">
+		<div id="wkf_block" class="wkf-block">
+		<p id="wkf_text">竟然被你发现了这里，这里还没有开发呢，等我开发了再来哈(*￣3￣)╭</p>
+		<img id="wkf_img" src="images/wkf_mm.jpg">
+		</div>
+</section>
 <script type="text/javascript" src="js/index.js">
 </script>
 </body>
