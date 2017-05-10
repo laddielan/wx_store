@@ -12,7 +12,7 @@ function editBtnEvent(){
 
 
 function submitNewAdrs(){
-    var openid = "oOEo4wdha12cmoJ2WFSAWBZ2vPpA";
+    var openid = getCookie("9book_openid");
     var contact = document.getElementById("contact");
     var telephone = document.getElementById("telephone");
     var m_province = document.getElementById("selProvince");

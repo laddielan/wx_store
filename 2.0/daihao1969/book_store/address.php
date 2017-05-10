@@ -1,6 +1,12 @@
 <?php 
     require_once 'lib/db.php';
-    define("OPENID","oOEo4wdha12cmoJ2WFSAWBZ2vPpA");
+   
+    if(!isset($_COOKIE["9book_openid"])){
+        echo '<meta http-equiv="refresh" content="0;url=http://9book.55555.io/book_store/lib/auth_page.php">';
+        exit();
+    }
+    define("OPENID", $_COOKIE["9book_openid"]);
+    
     $conn = connect_db();
     $sql = "SELECT * FROM address WHERE openid='".OPENID."'";
     $sql_res = fetchAll($conn, $sql);
@@ -89,6 +95,7 @@
 	
 </section>
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
 <script type="text/javascript" src="js/address.js"></script>
 </body>
 </html>

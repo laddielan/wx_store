@@ -21,7 +21,7 @@
 			{
 				"type":"view",
 				"name":"书店首页",
-				"url":"http://2.daihao1969.applinzi.com/book_store/index.php"
+				"url":"http://9book.55555.io/book_store/index.php"
 			},
 			{
 				"type":"click",
@@ -36,18 +36,18 @@
 			]
 		},
 		{
-			"name":"其他服务",
+			"name":"我的9号",
 			"sub_button":[
 			{
 				"type":"view",
-				"name":"登录",
-				"url":"http://2.daihao1969.applinzi.com/book_store/register.php",
+				"name":"购物车",
+				"url":"http://9book.55555.io/book_store/shopcart.php",
 				
 			},
 			{
-				"type":"scancode_push",
-				"name":"扫码（未开发）",
-				"key":"rselfmenu_0_1",
+				"type":"view",
+				"name":"个人中心",
+				"url":"http://9book.55555.io/book_store/user.php",
 			
 			}
 			]

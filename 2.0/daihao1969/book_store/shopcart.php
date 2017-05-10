@@ -1,5 +1,16 @@
 <?php 
 	require_once 'lib/db.php';
+	require_once 'lib/wx.php';
+	
+	if(!isset($_COOKIE["9book_openid"])){
+	    echo '<meta http-equiv="refresh" content="0;url=http://9book.55555.io/book_store/lib/auth_page.php">';
+	    exit();
+	}
+	else {
+	    $deadtime = time()+60*60*30;
+	    setcookie("9book_openid",$_COOKIE["9book_openid"],$deadtime,"/");
+	}
+	define("OPENID", $_COOKIE["9book_openid"]);
 /**
  *
  UI显示模块。
@@ -8,16 +19,11 @@
  *
  从数据库读出购物车里的内容，然后将其显示出来。
  */   
-	if(isset($_COOKIE["9book_openid"])){
-	    define("OPENID", $_COOKIE["9book_openid"]);
-	}
-	else{
-	    
-	}
-	
     session_start();
     $_SESSION['enterOrder'] = true;
+    
    
+
 	$conn = connect_db();
 	$sql = "SELECT * FROM shopcart WHERE openid='".OPENID."'";
 	$sql_res = fetchAll($conn, $sql);

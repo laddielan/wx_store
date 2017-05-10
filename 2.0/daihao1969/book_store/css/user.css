@@ -272,6 +272,52 @@ input.page-btn-add{
 	display: inline-block;
 }
 
+.auth-wrap{
+	padding:0.2rem 0.2rem;
+	text-align: center;
+}
+.auth-wrap h4{
+	text-align: center;
+	font-size: 0.5rem;
+	padding-bottom: 0.2rem;
+	border-bottom: solid 0.04rem #009400;
+}
+.auth-a-content{
+	margin-top: 1rem;
+}
+a.auth-a{
+	display: inline-block;
+	width: 5rem;
+	line-height: 1.2rem;
+	background-color: #009400;
+	font-size: 0.5rem;
+}
+a.auth-a:link{
+	color: white;
+}
+a.auth-a:visited{
+	color: white;
+}
+a.auth-a:hover{
+	color: white;
+}
+a.auth-a:active{
+	color: white;
+}
+
+.state-wrap{
+	font-size: 0.4rem;
+	margin-top: 2rem;
+	padding: 0 2rem;
+}
+.state-wrap h4{
+	text-align: center;
+	font-size: 0.5rem;
+	line-height: 0.6rem;
+}
+.state-wrap p{
+	line-height: 0.5rem;
+}
 
 
 

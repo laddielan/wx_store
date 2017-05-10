@@ -88,7 +88,7 @@ function sanitizeMySQL($var)
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">    
 	<meta name="author" content="daihao1969" /> 
 	<title>图书详情</title>
-	<link rel="stylesheet" type="text/css" href="css/bookv2.css">
+	<link rel="stylesheet" type="text/css" href="css/book.css">
 </head>
 <body>
 
@@ -176,6 +176,7 @@ function sanitizeMySQL($var)
 		</ul>
 	</div>
 </section>
+<!--
 <section>
 	<div id="search" class="search-wrap">
 	<input type="search" name="search_book" class="book-input" placeholder="搜索作者/书名">
@@ -200,6 +201,7 @@ function sanitizeMySQL($var)
 		</ul>
 	</div>
 </section>
+-->
 <footer>
 	<div class="back-home-wrap" ><a class="back-home" href="index.php">回到首页> </a></div>
 	<ul class="about-us">

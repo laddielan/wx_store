@@ -106,7 +106,8 @@ class wechatCallbackapiTest
                         $content[] = array("Title"=>"这是什么？", "Description"=>"", "PicUrl"=>"http://discuz.comli.com/weixin/weather/icon/cartoon.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
                         break;
                     case "文艺":
-                        $content = "瀑布的水逆流而上，
+                        $content = 
+"瀑布的水逆流而上，
 蒲公英的种子从远处飘回，变成伞的模样。
 太阳从西边升起，落向东方。
 子弹退回枪膛，
@@ -115,9 +116,8 @@ class wechatCallbackapiTest
 厨房里飘来饭菜的香，
 你把我的卷子签好名字，
 关掉电视，帮我把书包背上。 
-你还在我身旁。
-
-                                ";break;
+你还在我身旁。";
+						break;
                     case "段子":
                         $content = "小学时有道关联词填空：
 他（ ）牺牲生命，（ ）出卖组织。
@@ -191,8 +191,8 @@ class wechatCallbackapiTest
         }
 
         //自动回复模式
-        if (strstr($keyword, "文本")){
-            $content = "这是个文本消息";
+        if (strstr($keyword, "授权测试")){
+            $content = "<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2d54a161bbd17895&redirect_uri=http://9book.55555.io/book_store/lib/wx_operate.php&response_type=code&scope=snsapi_base&state=1#wechat_redirect'>点击测试授权</a>";
         }else if (strstr($keyword, "表情")){
             $content = "微笑：/::)\n乒乓：/:oo\n中国：".$this->bytes_to_emoji(0x1F1E8).$this->bytes_to_emoji(0x1F1F3)."\n仙人掌：".$this->bytes_to_emoji(0x1F335);
         }else if (strstr($keyword, "单图文")){
@@ -513,8 +513,8 @@ $item_str    </Articles>
         mysqli_close($conn);
         
         //设置cookie存在时间
-        $deadtime = time()*3600*24*30;
-        setcookie("9book_openid", $userinfo["openid"], $deadtime);
+        $deadtime = time()+3600*24*7;
+        setcookie("9book_openid", $userinfo["openid"], $deadtime,"/");
         return $userinfo["nickname"];
     }
 }

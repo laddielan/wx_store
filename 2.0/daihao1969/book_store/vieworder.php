@@ -1,10 +1,15 @@
 <?php 
 require_once 'lib/db.php';
-if (!isset($_GET["action"])){
+
+if(!isset($_COOKIE["9book_openid"])){
+    echo '<meta http-equiv="refresh" content="0;url=http://9book.55555.io/book_store/lib/auth_page.php">';
+    exit();
+}
+else if (!isset($_GET["action"])){
     echo '<meta http-equiv="refresh" content="0;url=http://localhost:88/php_mysql/book_store/index.php">';
     exit();
 }
-define("OPENID", "oOEo4wdha12cmoJ2WFSAWBZ2vPpA");
+define("OPENID", $_COOKIE["9book_openid"]);
 
 global $order_res;
 switch($_GET["action"]){

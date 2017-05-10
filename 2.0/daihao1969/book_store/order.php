@@ -1,6 +1,11 @@
 <?php
     require_once 'lib/db.php';
-
+    
+    if(!isset($_COOKIE["9book_openid"])){
+        echo '<meta http-equiv="refresh" content="0;url=http://9book.55555.io/book_store/lib/auth_page.php">';
+        exit();
+    }
+    define("OPENID", $_COOKIE["9book_openid"]);
 /**
  *
  UI显示模块。
@@ -13,14 +18,14 @@
 
 //根据session和$_SERVER['HTTP_REFERER']来判断是不是从购物车页面跳转到本页面，如果不是，就返回首页。
  	session_start();
- 	$fromurl = "http://localhost/php_mysql/book_store/shopcart.php";
- 	//$fromurl = "http://2.daihao1969.applinzi.com/book_store/shopcart.php";
-	if(!isset($_SESSION['openid'])||!isset($_SERVER['HTTP_REFERER'])|| $_SERVER['HTTP_REFERER'] != $fromurl||!isset($_SESSION["enterOrder"])){
-		echo '<meta http-equiv="refresh" content="0;url=http://localhost/php_mysql/book_store/index.php">';
-		//echo '<meta http-equiv="refresh" content="0;url=http://2.daihao1969.applinzi.com/book_store/index.php">';
+
+ 	$fromurl = "http://9book.55555.io/book_store/shopcart.php";
+	if(!isset($_SERVER['HTTP_REFERER'])|| $_SERVER['HTTP_REFERER'] != $fromurl||!isset($_SESSION["enterOrder"])){
+		echo '<meta http-equiv="refresh" content="0;url=http://9book.55555.io/book_store/index.php">';
 		exit();
 	}
-	define("OPENID","oOEo4wdha12cmoJ2WFSAWBZ2vPpA");
+	
+	
 
 //从cookie里读出提交的书在购物车里的itemid，然后查询数据库将其显示出来。
 	$itemids =explode(',', $_COOKIE['itemidarr']);
@@ -41,14 +46,14 @@
 	<title>待付款的订单</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="">
-	<link rel="stylesheet" type="text/css" href="css/order.css?randomId=<%=Math.random()%>">
+	<link rel="stylesheet" type="text/css" href="css/order.css">
 	<script type="text/javascript" src="js/zepto.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 </head>
 <body>
 <section class="adrs-wrap">
 <?php 
-$sql = "SELECT * FROM address WHERE openid='".$_SESSION['openid']."'";
+$sql = "SELECT * FROM address WHERE openid='".OPENID."'";
 $adrs = fetchOne($conn, $sql);
 
 if(!empty($adrs)){

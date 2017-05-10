@@ -1,6 +1,11 @@
 <?php
     require_once 'db.php';
-    
+
+    if(!isset($_COOKIE["9book_openid"])){
+        echo '<meta http-equiv="refresh" content="0;url=http://9book.55555.io/book_store/lib/auth_page.php">';
+        exit();
+    }
+    define("OPENID", $_COOKIE["9book_openid"]);
 /**
  *
  数据处理模块。
@@ -9,16 +14,16 @@
     function addShopcart(){
         $bookid = $_GET["bookId"];
         $booknum = $_GET["bookNum"];
-        $openid = "oOEo4wdha12cmoJ2WFSAWBZ2vPpA";
+        //$openid = "oOEo4wdha12cmoJ2WFSAWBZ2vPpA";
         $table = "shopcart";
         $conn = connect_db();
-        $sql = "SELECT * FROM shopcart WHERE bookId='".$bookid."' and openid='".$openid."'";
+        $sql = "SELECT * FROM shopcart WHERE bookId='".$bookid."' and openid='".OPENID."'";
         $item = fetchOne($conn, $sql);
         if(false == $item){
             //用当前时间作为当前订单书籍itemid
             $itemid = time();
           
-            $array = array("itemid"=>$itemid, "bookid"=>$bookid,"openid"=>$openid, "booknum"=>$booknum);
+            $array = array("itemid"=>$itemid, "bookid"=>$bookid,"openid"=>OPENID, "booknum"=>$booknum);
            // print_r($array);
             insert($conn, $table, $array);
         }

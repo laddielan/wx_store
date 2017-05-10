@@ -12,6 +12,10 @@
     if(isset($_GET["orderid"])){
         $orderid = $_GET["orderid"];
     }
+    else {
+        echo '<meta http-equiv="refresh" content="0;url=http://9book.55555.io/book_store/index.php">';
+        exit();
+    }
     session_start();
     if(isset($_SESSION["enterOrder"])){
         unset($_SESSION["enterOrder"]);
@@ -133,6 +137,6 @@ eod;
 	<div class="submit-btn" id="to_pay">去付款</div>
 	<div class="submit-total-wrap">合计：<span class="submit-total-money">&#65509;<?php echo round($order_info["amount"],2);?></span></div>
 </footer>
-<script type="text/javascript" src="js/orderstate2.js"></script>
+<script type="text/javascript" src="js/orderstate.js"></script>
 </body>
 </html>

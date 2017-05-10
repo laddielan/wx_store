@@ -1,5 +1,12 @@
 <?php
-
+    require_once 'lib/wx.php';
+	if(isset($_COOKIE["9book_openid"])){
+    	//echo $_COOKIE["9book_openid"];
+	}
+	else {
+    	func_get_user_info();
+	}
+	func_get_user_info();
 	//$db_server = mysqli_connect(SAE_MYSQL_HOST_M,SAE_MYSQL_USER,SAE_MYSQL_PASS,SAE_MYSQL_DB,SAE_MYSQL_PORT);
 	$db_server = mysqli_connect('LOCALHOST','root','laddie','info_of_user');
 
@@ -72,7 +79,7 @@ function sanitizeMySQL($var)
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">    
 	<meta name="author" content="daihao1969" /> 
 	<title>9号书店</title>
-	<link rel="stylesheet" type="text/css" href="css/weui.css">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script type="text/javascript" src="js/zepto.min.js"></script>
 </head>
@@ -83,9 +90,9 @@ function sanitizeMySQL($var)
 	<div class="shopcart-content"><a href="shopcart.php"><img class="header-logo" src="images/shopcart0.png"></a></div>
 </header>
 <div class="search-wrap">
-	<!--	<input type="search" class="book-search" name="search_book" placeholder="搜索书名/作者"><input class="search-submit-btn" type="submit" value="搜索" name="search_book_submit">
-	-->
-        <!--<a href="javascript:;" class="weui-btn weui-btn_primary">点击展现searchBar</a>-->
+		<input type="search" class="book-search" name="search_book" placeholder="搜索书名/作者"><input class="search-submit-btn" type="submit" value="搜索" name="search_book_submit">
+	
+        <!--<a href="javascript:;" class="weui-btn weui-btn_primary">点击展现searchBar</a>
         <div class="weui-search-bar" id="searchBar">
             <form class="weui-search-bar__form">
                 <div class="weui-search-bar__box">
@@ -121,8 +128,9 @@ function sanitizeMySQL($var)
                     <p>实时搜索文本</p>
                 </div>
             </div>
-        </div>
+        </div>-->
 </div>
+<!--
 <script type="text/javascript">
     $(function(){
         var $searchBar = $('#searchBar'),
@@ -168,7 +176,7 @@ function sanitizeMySQL($var)
             $searchInput.blur();
         });
     });
-</script>
+</script>-->
 <div class="slide-wrap">
 	<ul id="slideEles">
 		<li class="slide-show" style="display: block;" ><a href=""><img src="images/bar_001.jpg"></a></li>
@@ -223,6 +231,7 @@ function sanitizeMySQL($var)
 	
 	</div>
 </section>
+<!--
 <section>
 	<div class="hot-class-wrap">
 		<header>
@@ -300,11 +309,12 @@ function sanitizeMySQL($var)
 		</ul>
 	</div>
 </section>
+-->
 <div class="bottom">
 	<img src="images/end.png">
 </div>
 <div id="toTop" class="to-top">
-	<a href="#top">顶</a>
+	<a href="#top"><img src="images/icon_top.png"></a>
 </div>
 <script type="text/javascript" src="js/index.js">
 </script>
